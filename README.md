@@ -4,10 +4,11 @@ Mete tus vídeos en bruto y Claude te los devuelve editados como los de un edito
 
 ## Instalar (una vez, 10–15 minutos)
 1. Instala la app de **Claude** (claude.ai/download) y entra con un plan **Pro** o superior.
-2. Crea en tu ordenador una carpeta vacía llamada **edicion** (sin tilde).
-3. En Claude, pestaña **Code**, abre esa carpeta y escribe:
+2. **Solo Windows:** instala Git (git-scm.com → Download for Windows → Siguiente en todo). En Mac no hace falta: si sale una ventana para instalar las «herramientas de línea de comandos», pulsa Instalar.
+3. Crea en tu ordenador una carpeta vacía llamada **edicion** (sin tilde).
+4. En Claude, pestaña **Code**, abre esa carpeta y escribe:
    > Instala aquí el editor de Tiro Hecho: https://github.com/tiro-hecho/editor-reels-pro
-4. Cuando termine, abre un **chat nuevo** en la misma carpeta y escribe **/empezar**. Claude instala lo que falte (en Windows puede pedirte que cierres y abras Claude una vez) y te pregunta por tu marca.
+5. Cuando termine, abre un **chat nuevo** en la misma carpeta y escribe **/empezar**. Claude instala lo que falte (en Windows puede pedirte que cierres y abras Claude una vez) y te pregunta por tu marca.
 
 ## Usar
 - Mete tus vídeos en `mi-edicion/brutos` y escribe **/estilos** para elegir cómo quieres que queden.
