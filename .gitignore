@@ -1,0 +1,17 @@
+# Lo del alumno y lo que se descarga al instalar: nunca va al repositorio
+mi-edicion/
+recursos-descargados/
+.venv/
+# Licencia Pixabay: no se pueden redistribuir sueltos (los baja descargar_recursos.py)
+editor/assets/musica/*.mp3
+editor/assets/efectos/pixabay/
+editor/assets/efectos/escenas-creador/*.mp3
+editor/assets/efectos/miticos/*.mp3
+# Fotogramas de reels de otros creadores y caras sin difuminar
+editor/catalogo/_catalogo_no_subir.jpg
+editor/catalogo/_miniaturas_no_subir/
+# Restos
+.DS_Store
+__pycache__/
+*.pyc
+herramientas/

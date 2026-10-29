@@ -1,0 +1,6 @@
+faster-whisper>=1.0
+pillow>=10
+numpy>=1.26
+opencv-python-headless>=4.9
+rembg[cpu]>=2.0.50
+yt-dlp

@@ -1,0 +1,58 @@
+{
+  "_leeme": "Música y efectos de Pixabay (licencia Pixabay: uso comercial sin atribución, pero NO se pueden repartir sueltos). Por eso no van en el repositorio: descargar_recursos.py los baja desde Pixabay al ordenador de cada alumno. «proceso»: recorte = quita el silencio inicial, deja como mucho N s e iguala el volumen.",
+  "musica": {
+    "pocketbeats_hiphop.mp3": "https://cdn.pixabay.com/download/audio/2025/05/04/audio_e3f5165fe9.mp3",
+    "coastal_sprint.mp3": "https://cdn.pixabay.com/download/audio/2025/11/17/audio_98e8b5e523.mp3",
+    "stomp_action.mp3": "https://cdn.pixabay.com/download/audio/2026/04/10/audio_02a364dca5.mp3",
+    "vlog_hiphop.mp3": "https://cdn.pixabay.com/download/audio/2026/02/12/audio_ef715196dc.mp3",
+    "stylish_trailer_percussion.mp3": "https://cdn.pixabay.com/download/audio/2026/10/19/audio_0983229bdb.mp3"
+  },
+  "efectos/miticos": {
+    "malo1_buzzer.mp3": "https://cdn.pixabay.com/download/audio/2022/02/11/audio_7f0bf4cdc0.mp3",
+    "malo2_buzzer_corto.mp3": "https://cdn.pixabay.com/download/audio/2021/08/04/audio_39b5f497b1.mp3",
+    "malo3_trombon.mp3": "https://cdn.pixabay.com/download/audio/2021/08/04/audio_c003cb2711.mp3",
+    "bueno1_concurso.mp3": "https://cdn.pixabay.com/download/audio/2022/03/18/audio_78595cc04a.mp3",
+    "bueno2_correcto.mp3": "https://cdn.pixabay.com/download/audio/2021/08/04/audio_c201b79c03.mp3",
+    "bueno3_tick.mp3": "https://cdn.pixabay.com/download/audio/2025/10/06/audio_9b61cc485a.mp3",
+    "top1_tada.mp3": "https://cdn.pixabay.com/download/audio/2021/08/04/audio_473a42432c.mp3",
+    "top2_levelup.mp3": "https://cdn.pixabay.com/download/audio/2024/02/19/audio_e4043ea6be.mp3",
+    "top3_fanfarria.mp3": "https://cdn.pixabay.com/download/audio/2021/08/04/audio_12b0c7443c.mp3",
+    "switch_on.mp3": "https://cdn.pixabay.com/download/audio/2025/07/30/audio_4858a65b3c.mp3",
+    "power_up.mp3": "https://cdn.pixabay.com/download/audio/2026/02/14/audio_7dc604ebb4.mp3",
+    "malo1_corto.mp3": {"de": "malo1_buzzer.mp3", "ffmpeg": "-t 0.6 -af afade=t=out:st=0.42:d=0.18"}
+  },
+  "efectos/pixabay": {
+    "whoosh1.mp3": ["https://cdn.pixabay.com/download/audio/2025/07/30/audio_b3087a581e.mp3", 1.8],
+    "whoosh2.mp3": ["https://cdn.pixabay.com/download/audio/2025/07/18/audio_f5a010a2d7.mp3", 1.8],
+    "swipe1.mp3": ["https://cdn.pixabay.com/download/audio/2025/09/16/audio_5337b3b272.mp3", 1.8],
+    "swipe2.mp3": ["https://cdn.pixabay.com/download/audio/2024/10/27/audio_60e0332d6f.mp3", 1.8],
+    "pop1.mp3": ["https://cdn.pixabay.com/download/audio/2025/09/09/audio_3023b9bde2.mp3", 1.8],
+    "pop2.mp3": ["https://cdn.pixabay.com/download/audio/2025/05/29/audio_145c0e7b22.mp3", 1.8],
+    "ding1.mp3": ["https://cdn.pixabay.com/download/audio/2026/01/24/audio_f7ed9fb119.mp3", 1.8],
+    "ding2.mp3": ["https://cdn.pixabay.com/download/audio/2022/11/21/audio_1b7f7e3ca3.mp3", 1.8],
+    "impacto1.mp3": ["https://cdn.pixabay.com/download/audio/2025/05/31/audio_be1e4daf3e.mp3", 1.8],
+    "impacto2.mp3": ["https://cdn.pixabay.com/download/audio/2025/06/02/audio_316d8e1c15.mp3", 1.8],
+    "riser1.mp3": ["https://cdn.pixabay.com/download/audio/2022/12/24/audio_74f3679d6a.mp3", 3.5],
+    "riser2.mp3": ["https://cdn.pixabay.com/download/audio/2025/10/10/audio_cda4228686.mp3", 3.5],
+    "camara.mp3": ["https://cdn.pixabay.com/download/audio/2025/05/23/audio_c0a76b92b0.mp3", 1.8],
+    "notificacion.mp3": ["https://cdn.pixabay.com/download/audio/2026/03/02/audio_0ff77f8b5d.mp3", 1.8],
+    "caja_registradora.mp3": ["https://cdn.pixabay.com/download/audio/2022/11/04/audio_7650b73fdb.mp3", 1.8],
+    "glitch.mp3": ["https://cdn.pixabay.com/download/audio/2025/09/01/audio_b5effe8cf7.mp3", 1.8],
+    "latido.mp3": ["https://cdn.pixabay.com/download/audio/2025/07/09/audio_f722e59523.mp3", 3.5],
+    "publico.mp3": ["https://cdn.pixabay.com/download/audio/2025/09/18/audio_5c9b7f494e.mp3", 3.5],
+    "punetazo.mp3": ["https://cdn.pixabay.com/download/audio/2025/05/30/audio_dd004c6c1b.mp3", 1.8],
+    "bass_drop.mp3": ["https://cdn.pixabay.com/download/audio/2025/08/15/audio_34184d2028.mp3", 1.8],
+    "scratch.mp3": ["https://cdn.pixabay.com/download/audio/2022/03/26/audio_7d318dd030.mp3", 1.8],
+    "teclado.mp3": ["https://cdn.pixabay.com/download/audio/2026/04/26/audio_f6d75e9a5a.mp3", 3.5],
+    "flash.mp3": ["https://cdn.pixabay.com/download/audio/2021/08/09/audio_20cc1e06a6.mp3", 1.8]
+  },
+  "efectos/escenas": {
+    "_leeme": "Nombres que usan los motores (whoosh_rapido, pop2…). Son copias del pack de arriba.",
+    "whoosh_rapido.mp3": "pixabay/whoosh1.mp3", "whoosh_brillo.mp3": "pixabay/whoosh2.mp3",
+    "swoosh1.mp3": "pixabay/swipe1.mp3", "swoosh2.mp3": "pixabay/swipe2.mp3",
+    "pop.mp3": "pixabay/pop1.mp3", "pop2.mp3": "pixabay/pop2.mp3", "ding.mp3": "pixabay/ding1.mp3",
+    "boom.mp3": "pixabay/impacto1.mp3", "riser.mp3": "pixabay/riser1.mp3", "reverse.mp3": "pixabay/riser2.mp3",
+    "subdrop.mp3": "pixabay/bass_drop.mp3", "flash.mp3": "pixabay/flash.mp3", "click.mp3": "pixabay/camara.mp3",
+    "caja.mp3": "pixabay/caja_registradora.mp3", "teclas.mp3": "pixabay/teclado.mp3", "papel.mp3": "pixabay/swipe2.mp3"
+  }
+}

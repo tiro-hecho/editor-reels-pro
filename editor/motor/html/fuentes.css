@@ -1,0 +1,11 @@
+@font-face { font-family: Inter; src: url("../../assets/fuentes/Inter[opsz,wght].ttf"); font-weight: 100 900; }
+@font-face { font-family: 'Instrument Serif'; src: url("../../assets/fuentes/InstrumentSerif-Italic.ttf"); font-style: italic; }
+@font-face { font-family: 'DM Serif Display'; src: url("../../assets/fuentes/DMSerifDisplay-Italic.ttf"); font-style: italic; }
+@font-face { font-family: Nunito; src: url("../../assets/fuentes/Nunito[wght].ttf"); font-weight: 200 1000; }
+@font-face { font-family: Anton; src: url("../../assets/fuentes/Anton-Regular.ttf"); }
+@font-face { font-family: 'Bebas Neue'; src: url("../../assets/fuentes/BebasNeue-Regular.ttf"); }
+@font-face { font-family: Caveat; src: url("../../assets/fuentes/Caveat[wght].ttf"); font-weight: 400 700; }
+@font-face { font-family: VT323; src: url("../../assets/fuentes/VT323-Regular.ttf"); }
+@font-face { font-family: 'JetBrains Mono'; src: url("../../assets/fuentes/JetBrainsMono[wght].ttf"); font-weight: 100 800; }
+@font-face { font-family: Montserrat; src: url("../../assets/fuentes/Montserrat[wght].ttf"); font-weight: 100 900; }
+@font-face { font-family: Poppins; src: url("../../assets/fuentes/Poppins-Bold.ttf"); font-weight: 700; }
