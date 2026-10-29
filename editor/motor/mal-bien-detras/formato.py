@@ -5,6 +5,8 @@ import json, os, re
 P = json.load(open("plan.json")); DUR = P["dur"]; TR = P["tramos"]; WD = json.load(open("palabras_base.json"))
 for w in WD: w.setdefault("blq", next((t["blq"] for t in TR if t["t0"] - 0.05 <= w["s"] < t["t1"]), TR[-1]["blq"]))
 from rutas import *          # rutas comunes (fuentes, efectos, música) — igual en Mac y Windows
+# ficha de Google: la del proyecto o, si no, la de la marca (la captura /empezar). Nota y opiniones REALES de mi-edicion/marca.json
+FICHA_PNG = 'ficha_google.png' if os.path.exists('ficha_google.png') else os.path.join(RAIZ, 'mi-edicion', 'marca', 'ficha_google.png')
 ini, fin = {}, {}
 for t in TR: ini.setdefault(t["blq"], t["t0"]); fin[t["blq"]] = t["t1"]
 NOM = {1: "SKIERG", 2: "PRESS PLANO", 3: "JALÓN AL PECHO", 4: "ABDOMINALES"}
@@ -27,7 +29,7 @@ def txt(w, blq):
     return FIX.get(x, x) if blq in ("e2-n", "e3-n") else x
 SUB = [dict(t0=round(g[0]["s"] - 0.05, 3), t1=round(min(g[-1]["e"] + 0.3, (BL[k + 1][0]["s"] - 0.05) if k + 1 < len(BL) else DUR), 3),
             ws=[[txt(w["w"], w["blq"]), round(w["s"], 3)] for w in g]) for k, g in enumerate(BL)]
-X = dict(E=EJ, G=GAN, DUR=DUR, CTA=ini["cta"], FICHA=url("ficha_google.png"))
+X = dict(E=EJ, G=GAN, DUR=DUR, CTA=ini["cta"], FICHA=url(FICHA_PNG) if os.path.exists(FICHA_PNG) else '', NOTA=str(MARCA.get('nota_google', '')), OPI=(f"{MARCA['opiniones']} opiniones" if MARCA.get('opiniones') else ''))
 css = FUENTES_CSS + f"""body{{margin:0;width:1080px;height:1920px;overflow:hidden;background:transparent;font-family:HB;color:#fff}} .a{{position:absolute}}
 #cab{{left:84px;top:214px;width:912px;opacity:0}} #fila{{display:flex;align-items:center;gap:22px}}
 #tag{{flex:none;width:116px;height:116px;border-radius:26px;background:#FF4B2B;color:#fff;font:76px HCB;display:flex;align-items:center;justify-content:center;line-height:1}}
@@ -69,13 +71,13 @@ window.setT=t=>{
      Pl.style.opacity=cl(q/0.1)*cl(((malo?E.m1:E.b1)-t)/0.12); Pl.style.transform=`scale(${0.5+0.5*mu(q/0.45)})`;} else Pl.style.opacity=0;
  } else {C.style.opacity=0; Pl.style.opacity=0;}
  // cierre: la ficha de Google (captura real) sube detrás de la persona + 5,0
- if(t>=X.CTA){const k=t-X.CTA, e=o3(k/0.55), W2=330, H2=W2*1649/800, y=560+900*(1-e), r=-6+3*(1-e);
+ if(t>=X.CTA&&X.FICHA){const k=t-X.CTA, e=o3(k/0.55), W2=330, H2=W2*1649/800, y=560+900*(1-e), r=-6+3*(1-e);
    h+=`<defs><clipPath id="cp"><rect x="0" y="0" width="${W2}" height="${H2}" rx="40"/></clipPath></defs>
    <g transform="translate(14 ${y}) rotate(${r})"><rect x="-10" y="-10" width="${W2+20}" height="${H2+20}" rx="48" fill="#0E0E10"/>
    <image href="${X.FICHA}" x="0" y="0" width="${W2}" height="${H2}" clip-path="url(#cp)" preserveAspectRatio="xMidYMin slice"/></g>`;
    const q=k-0.45, e2=mu(q/0.5);
-   h+=`<g transform="translate(935 700) scale(${0.4+0.6*e2})" opacity="${cl(q/0.12)}"><text text-anchor="middle" font-size="170" fill="#fff">5,0</text>
-   <text y="64" text-anchor="middle" font-size="44" fill="#FFC400" letter-spacing="2">★★★★★</text><text y="112" text-anchor="middle" font-size="32" fill="#fff">14 opiniones</text></g>`;}
+   h+=`<g transform="translate(935 700) scale(${0.4+0.6*e2})" opacity="${cl(q/0.12)}"><text text-anchor="middle" font-size="170" fill="#fff">${X.NOTA}</text>
+   <text y="64" text-anchor="middle" font-size="44" fill="#FFC400" letter-spacing="2">${X.NOTA?'★★★★★':''}</text><text y="112" text-anchor="middle" font-size="32" fill="#fff">${X.OPI}</text></g>`;}
  $('g').innerHTML=h;
  const Sb=$('sub'), b=S.find(x=>t>=x.t0&&t<x.t1);
  if(!b){Sb.innerHTML='';sK='';return;}

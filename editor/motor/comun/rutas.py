@@ -23,14 +23,30 @@ def url(p):
     from pathlib import Path
     return Path(os.path.abspath(p)).as_uri()
 
+# Marca del alumno (la escribe /empezar en mi-edicion/marca.json):
+#   {"negocio": "...", "color_acento": "#RRGGBB", "color_texto": "#FFFFFF",
+#    "fuente_titulos": "mi-edicion/marca/fuentes/x.ttf", "fuente_texto": "mi-edicion/marca/fuentes/y.ttf", "logo": "mi-edicion/marca/logo.png"}
+import json as _json
+_m = os.path.join(RAIZ, "mi-edicion", "marca.json")
+MARCA = _json.load(open(_m, encoding="utf-8")) if os.path.exists(_m) else {}
+ACENTO_BASE = "#FF4B2B"                      # el color de acento con el que se diseñaron los estilos (se cambia por el de la marca)
+
+def _fuente(clave):
+    p = MARCA.get(clave)
+    if p and not os.path.isabs(p): p = os.path.join(RAIZ, p)
+    return p if p and os.path.exists(p) else None
+
 # Tipografías: Helvetica Neue es de pago y no existe en Windows; en su lugar, libres y casi iguales.
 #   HB = titular/subtítulo (Inter Bold) · HM = texto medio (Inter Medium) · HCB/HCO = condensada gorda (Anton)
 #   Inter es variable: el rango fijo de font-weight hace que Chrome la pinte con ese grosor aunque el CSS pida «normal».
 _INTER, _ANTON = url(os.path.join(F, "Inter[opsz,wght].ttf")), url(os.path.join(F, "Anton-Regular.ttf"))
-FUENTES_CSS = (f"@font-face{{font-family:HB;src:url('{_INTER}');font-weight:700 700}}"
-               f"@font-face{{font-family:HM;src:url('{_INTER}');font-weight:500 500}}"
-               f"@font-face{{font-family:HCB;src:url('{_ANTON}')}}"
-               f"@font-face{{font-family:HCO;src:url('{_ANTON}')}}")
+_T, _X = _fuente("fuente_titulos"), _fuente("fuente_texto")      # si la marca tiene su propia tipografía, manda la suya
+_TIT = url(_T) if _T else _ANTON
+_TXT = f"src:url('{url(_X)}')" if _X else f"src:url('{_INTER}');font-weight:700 700"
+FUENTES_CSS = (f"@font-face{{font-family:HB;{_TXT}}}"
+               f"@font-face{{font-family:HM;src:url('{url(_X) if _X else _INTER}');font-weight:500 500}}"
+               f"@font-face{{font-family:HCB;src:url('{_TIT}')}}"
+               f"@font-face{{font-family:HCO;src:url('{_TIT}')}}")
 
 # ffmpeg del sistema o, si no hay, el portátil que deja el instalador en herramientas/ffmpeg (Windows sin winget)
 _PORTATIL = os.path.join(RAIZ, "herramientas", "ffmpeg", "bin")

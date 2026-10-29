@@ -4,6 +4,8 @@ import json, os, re
 P = json.load(open("plan.json")); DUR = P["dur"]; TR = P["tramos"]; WD = json.load(open("palabras_base.json"))
 for w in WD: w.setdefault("blq", next((t["blq"] for t in TR if t["t0"] - 0.05 <= w["s"] < t["t1"]), TR[-1]["blq"]))
 from rutas import *          # rutas comunes (fuentes, efectos, música) — igual en Mac y Windows
+# ficha de Google: la del proyecto o, si no, la de la marca (la captura /empezar). Nota y opiniones REALES de mi-edicion/marca.json
+FICHA_PNG = 'ficha_google.png' if os.path.exists('ficha_google.png') else os.path.join(RAIZ, 'mi-edicion', 'marca', 'ficha_google.png')
 ini, fin = {}, {}
 for t in TR: ini.setdefault(t["blq"], t["t0"]); fin[t["blq"]] = t["t1"]
 NOM = {"intro": ("5", "ERRORES EN PIERNA"), "b1": ("01", "MALA TÉCNICA"), "b2": ("02", "DEMASIADO PESO"), "b3": ("03", "MUCHAS REPES"),
@@ -23,7 +25,7 @@ for s in SUB:      # «el tercero el hace» -> «lo hace»
     for i in range(len(s["ws"]) - 1):
         if s["ws"][i][0] == "el" and s["ws"][i + 1][0] == "hace": s["ws"][i][0] = "lo"
     if s["ws"] and s["ws"][0][0] == "hace" and SUB.index(s) > 0 and SUB[SUB.index(s) - 1]["ws"][-1][0] == "el": SUB[SUB.index(s) - 1]["ws"][-1][0] = "lo"
-X = dict(B=BLOQ, DUR=DUR, CTA=ini['cta'], FICHA=url('ficha_google.png'))
+X = dict(B=BLOQ, DUR=DUR, CTA=ini['cta'], FICHA=url(FICHA_PNG) if os.path.exists(FICHA_PNG) else '', NOTA=str(MARCA.get('nota_google', '')), OPI=(f"{MARCA['opiniones']} opiniones" if MARCA.get('opiniones') else ''))
 css = FUENTES_CSS + f"""body{{margin:0;width:1080px;height:1920px;overflow:hidden;background:transparent;font-family:HB;color:#fff}} .a{{position:absolute}}
 #cab{{left:84px;top:214px;width:912px;opacity:0}}
 #fila{{display:flex;align-items:center;gap:22px}}
@@ -108,14 +110,14 @@ function G(t){
   }
  }
  // cierre: la ficha de Google (captura real) sube detrás de la persona
- if(t>=CT){const k=t-CT, e=o3(k/0.55), W2=330, H2=W2*1649/800, y=560+900*(1-e), r=-6+3*(1-e);
+ if(t>=CT&&X.FICHA){const k=t-CT, e=o3(k/0.55), W2=330, H2=W2*1649/800, y=560+900*(1-e), r=-6+3*(1-e);
    h+=`<defs><clipPath id="cp"><rect x="0" y="0" width="${W2}" height="${H2}" rx="40"/></clipPath></defs>
    <g transform="translate(14 ${y}) rotate(${r})"><rect x="-10" y="-10" width="${W2+20}" height="${H2+20}" rx="48" fill="#0E0E10"/>
    <image href="${X.FICHA}" x="0" y="0" width="${W2}" height="${H2}" clip-path="url(#cp)" preserveAspectRatio="xMidYMin slice"/>
    <rect x="20" y="${H2*0.672}" width="${W2*0.37}" height="${H2*0.03}" rx="10" fill="none" stroke="#FF4B2B" stroke-width="6" opacity="${cl((k-0.6)/0.15)*(0.6+0.4*Math.sin(k*8))}"/></g>`;
    const q=k-0.45, e2=mu(q/0.5);
-   h+=`<g transform="translate(935 700) scale(${0.4+0.6*e2})" opacity="${cl(q/0.12)}"><text text-anchor="middle" font-size="170" fill="#fff">5,0</text>
-   <text y="64" text-anchor="middle" font-size="44" fill="#FFC400" letter-spacing="2">★★★★★</text><text y="112" text-anchor="middle" font-size="32" fill="#fff">14 opiniones</text></g>`;}
+   h+=`<g transform="translate(935 700) scale(${0.4+0.6*e2})" opacity="${cl(q/0.12)}"><text text-anchor="middle" font-size="170" fill="#fff">${X.NOTA}</text>
+   <text y="64" text-anchor="middle" font-size="44" fill="#FFC400" letter-spacing="2">${X.NOTA?'★★★★★':''}</text><text y="112" text-anchor="middle" font-size="32" fill="#fff">${X.OPI}</text></g>`;}
  g.innerHTML=h;
 }
 window.setT=t=>{

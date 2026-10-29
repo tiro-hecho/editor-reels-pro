@@ -19,6 +19,7 @@ Ejecuta la skill **`/empezar`**: prepara su ordenador (Mac o Windows), descarga 
 ## Reglas que no se rompen
 - **Nunca borres ni sobrescribas un bruto.** Todo sale en `mi-edicion/proyectos/` y lo final en `mi-edicion/entregados/`.
 - **Nunca publiques ni envíes nada** por él.
+- **Su marca manda:** los colores, la tipografía, el logo y la ficha de Google salen de `mi-edicion/marca.json` (lo crea `/empezar`). El motor cambia solo el color de acento de cada estilo por el suyo; el rojo y el verde de «mal/bien» no se tocan.
 - **No inventes datos:** ni precios, ni direcciones, ni notas de Google, ni reseñas. Solo lo que esté en su web o su ficha.
 - **Cortes con la energía real de la voz** (`editor/motor/comun/cortes_energia.py`), nunca con los tiempos de Whisper a pelo: se comen sílabas.
 - **Revisa antes de enseñar:** transcribe el resultado (que no falte ninguna palabra), mira `hoja.jpg`, que nada tape la cara ni se salga de la zona segura (x 60–940, y 220–1440) y que los subtítulos no pisen ninguna animación.

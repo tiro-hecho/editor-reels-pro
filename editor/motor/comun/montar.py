@@ -54,7 +54,21 @@ if "siluetas" in hacer and detras and not os.path.exists(os.path.join("mascaras"
     corre([PY, os.path.join(COMUN, "mascaras.py")]); corre([PY, os.path.join(COMUN, "afina_mascaras.py")])
     open(os.path.join("mascaras", ".hecho"), "w").close()
 # 4. formato del estilo: escribe overlay.html (+ detras.html), eventos.json, camara.json, volumen.json
-if "formato" in hacer: corre([PY, "formato.py"])
+if "formato" in hacer:
+    corre([PY, "formato.py"])
+    # colores de la marca: el acento con el que se diseñó el estilo pasa a ser el del alumno (rojo/verde de malo/bueno no se tocan)
+    from rutas import MARCA, ACENTO_BASE
+    nuevo = MARCA.get("color_acento", "").strip()
+    if nuevo.startswith("#") and len(nuevo) == 7 and nuevo.upper() != ACENTO_BASE:
+        import re
+        rgb = lambda h: ",".join(str(int(h[i:i + 2], 16)) for i in (1, 3, 5))
+        for h in ("overlay.html", "detras.html"):
+            if os.path.exists(h):
+                t = open(h, encoding="utf-8").read()
+                t = re.sub(ACENTO_BASE, nuevo, t, flags=re.I)
+                t = re.sub(r"(rgba?\(\s*)255\s*,\s*75\s*,\s*43", lambda m: m.group(1) + rgb(nuevo), t)
+                open(h, "w", encoding="utf-8").write(t)
+        print("  · colores de la marca aplicados:", nuevo, flush=True)
 # 5. capas HTML: delante a 60 fps (se promedia de dos en dos = desenfoque de movimiento real) y detrás a 30 fps
 if "capas" in hacer:
     capa("overlay.html", "overlay", 60); renumera("overlay", round(DUR * 60))

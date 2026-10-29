@@ -6,6 +6,12 @@ description: Edita vídeos en bruto y los convierte en reels profesionales con u
 
 Lee antes `editor/CRITERIOS.md`: son obligatorios. Python del editor: Mac `.venv/bin/python` · Windows `.venv\Scripts\python` (en esta guía, `PY`).
 
+## 0. Antes de editar, 3 preguntas rápidas (solo las que no sepas ya)
+1. **¿Dónde están los vídeos?** En `mi-edicion/brutos`, arrastrados al chat o en otra carpeta que te diga (los usas desde ahí, sin moverlos ni borrarlos).
+2. **¿De qué va el vídeo y qué quieres que haga quien lo vea?** (seguirte, escribirte, venir al centro…). Así eliges gancho y cierre.
+3. **¿Quieres meter algo de tu negocio?** La ficha de Google al final (si hay `mi-edicion/marca/ficha_google.png`), una foto o captura de su web (`mi-edicion/marca/recursos/`), su logo… Si pide algo que no está, sácalo tú de su web o ficha y enséñaselo antes de usarlo.
+Si no existe `mi-edicion/marca.json`, haz antes la parte de la marca de `/empezar`: los colores y la tipografía del vídeo salen de ahí.
+
 ## 1. Organiza
 - Crea `mi-edicion/proyectos/video-NN-tema/` y, desde ahí, transcribe sus brutos: `PY ../../../editor/motor/comun/transcribir.py <brutos…>` (sale `palabras/<bruto>.json` y `.txt`).
 - Lee las transcripciones y saca **solo las tomas buenas**: fuera muletillas («ya», «vale», «espera»), arranques en falso, risas, charla de preparación y la voz de quien graba.
@@ -20,7 +26,7 @@ Mira los planos (un fotograma cada 0,5 s) cuando lo que se ve importe (p. ej. d�
 
 ## 4. montaje.json y formato.py
 - `montaje.json`: `{"estilo": "…", "formato": "vertical"|"horizontal", "musica": "<archivo de recursos-descargados/musica>", "detras": true|false, "tramos": [[ruta_bruto, desde, hasta, "bloque", velocidad], …]}`. Velocidad 1.07 con voz; 1.6 en demostraciones sin voz. `detras: true` si el estilo pinta gráficos detrás del cuerpo.
-- Copia `editor/motor/<estilo>/formato.py` al proyecto y cambia solo su contenido (títulos, bloques, fotos, textos). Colores y logo de `mi-edicion/marca.md`; la ficha de Google en `mi-edicion/marca/ficha_google.png`.
+- Copia `editor/motor/<estilo>/formato.py` al proyecto y cambia solo su contenido (títulos, bloques, fotos, textos). Los colores, la tipografía, la nota de Google y la ficha (`mi-edicion/marca/ficha_google.png`) los pone el motor solo desde `mi-edicion/marca.json`: no los escribas a mano en el formato.
 - La música: la que no haya usado en el vídeo anterior (mira `mi-edicion/progreso.md`).
 
 ## 5. Monta
