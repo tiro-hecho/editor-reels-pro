@@ -5,12 +5,13 @@
 #   Se puede repetir: cada paso se salta si ya está hecho y no ha cambiado lo anterior.
 import glob, json, os, shutil, subprocess, sys, time
 COMUN = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, COMUN)
-from rutas import ffmpeg, MUS
+from rutas import ffmpeg, MUS, HILOS, NUCLEOS, RAM_GB, TANDA_CHROME, respira, disco_libre_gb
 PY = sys.executable
 proyecto = os.path.abspath(sys.argv[1]); os.chdir(proyecto)
 DESDE = sys.argv[sys.argv.index("--desde") + 1] if "--desde" in sys.argv else None
 M = json.load(open("montaje.json", encoding="utf-8"))
 ENV = dict(os.environ, PYTHONPATH=COMUN + os.pathsep + os.environ.get("PYTHONPATH", ""), PYTHONIOENCODING="utf-8", PYTHONUTF8="1")   # Windows: archivos en UTF-8 (tildes, emojis)
+print(f"Modo suave: {HILOS} de {NUCLEOS} núcleos, prioridad baja · {RAM_GB:.0f} GB de memoria. Puedes seguir usando el ordenador; si va justo, tardará más.", flush=True)
 PASOS = ["transcribir", "cortar", "siluetas", "formato", "capas", "componer", "mezcla", "revision"]
 hacer = set(PASOS[PASOS.index(DESDE):]) if DESDE else set(PASOS)
 
@@ -21,8 +22,9 @@ def corre(args, **kw):
 def capa(html, carpeta, fps, intentos=12):
     """pinta una capa HTML a PNG; si Chrome se cuelga más de 3 minutos sin sacar fotogramas, se reinicia y sigue donde iba"""
     dur = str(json.load(open("plan.json"))["dur"]); fallos = 0
-    while fallos < intentos:                    # tandas de 150 fotogramas con un Chrome nuevo cada una (código 3 = tanda hecha)
-        p = subprocess.Popen([PY, os.path.join(COMUN, "render_html.py"), html, carpeta, dur, str(fps)], env=dict(ENV, TANDA="150"))
+    while fallos < intentos:                    # tandas según la memoria, con un Chrome nuevo cada una (código 3 = tanda hecha)
+        respira()
+        p = subprocess.Popen([PY, os.path.join(COMUN, "render_html.py"), html, carpeta, dur, str(fps)], env=dict(ENV, TANDA=str(TANDA_CHROME)))
         ultimo, visto = time.time(), -1
         while p.poll() is None:
             time.sleep(5); n = len(glob.glob(os.path.join(carpeta, "*.png")))
@@ -71,6 +73,7 @@ if "formato" in hacer:
         print("  · colores de la marca aplicados:", nuevo, flush=True)
 # 5. capas HTML: delante a 60 fps (se promedia de dos en dos = desenfoque de movimiento real) y detrás a 30 fps
 if "capas" in hacer:
+    if disco_libre_gb() < 5: sys.exit("Necesito al menos 5 GB libres en el disco para este paso. Libera espacio y repite con --desde capas.")
     capa("overlay.html", "overlay", 60); renumera("overlay", round(DUR * 60))
     if os.path.exists("detras.html"): capa("detras.html", "overlay_detras", 30); renumera("overlay_detras", round(DUR * 30))
 # 6. componer la imagen final
@@ -87,4 +90,5 @@ if "revision" in hacer:
     subprocess.run([ffmpeg(), "-v", "error", "-y", "-i", final, "-c:v", "libx264", "-crf", "25", "-c:a", "aac", "-b:a", "160k", "-ac", "2",
                     "-movflags", "+faststart", "movil.mp4"], check=True)
     subprocess.run([ffmpeg(), "-v", "error", "-y", "-i", final, "-vf", f"fps=12/{DUR},scale=240:-2,tile=6x2", "-frames:v", "1", "hoja.jpg"], check=True)
+    for d in ("overlay", "overlay_detras", "seg"): shutil.rmtree(d, ignore_errors=True)     # libera disco: los fotogramas de trabajo ya no hacen falta
     print(f"\nLISTO: {os.path.join(proyecto, final)}  ·  para el móvil: movil.mp4  ·  revisión: hoja.jpg")

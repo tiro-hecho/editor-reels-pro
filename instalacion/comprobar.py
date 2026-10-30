@@ -22,7 +22,7 @@ def video():
 def transcripcion():
     from faster_whisper import WhisperModel
     from rutas import MODELOS
-    WhisperModel("small", device="cpu", compute_type="int8", download_root=os.path.join(MODELOS, "whisper"))   # la primera vez descarga ~460 MB
+    WhisperModel(rutas.MODELO_WHISPER, device="cpu", compute_type="int8", cpu_threads=rutas.HILOS, download_root=os.path.join(MODELOS, "whisper"))   # la primera vez descarga ~460 MB
 
 def capa_html():
     html = os.path.join(tmp, "p.html")
@@ -42,6 +42,8 @@ def recursos():
     falta = [p for p in (os.path.join(MIT, "malo1_corto.mp3"), os.path.join(MUS, "vlog_hiphop.mp3")) if not os.path.exists(p)]
     assert not falta, "faltan la música y los efectos: ejecuta editor/motor/comun/descargar_recursos.py"
 
+print(f"Este ordenador: {rutas.NUCLEOS} núcleos, {rutas.RAM_GB:.0f} GB de memoria · el editor usará {rutas.HILOS} núcleos con prioridad baja")
+if rutas.RAM_GB < 8: print("AVISO: tiene menos de 8 GB de memoria: funcionará, pero irá despacio. Mejor editar vídeos cortos y dejarlo trabajar con pocos programas abiertos.")
 for n, f in [("vídeo (ffmpeg y HDR)", video), ("transcripción (Whisper)", transcripcion), ("gráficos (Chrome/Edge)", capa_html),
              ("recorte de la persona", recorte), ("música y efectos descargados", recursos)]:
     paso(n, f)

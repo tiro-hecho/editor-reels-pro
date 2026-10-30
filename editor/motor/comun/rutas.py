@@ -5,6 +5,62 @@ for _s in (sys.stdout, sys.stderr):          # Windows: que los acentos y símbo
     try: _s.reconfigure(encoding="utf-8", errors="replace")
     except Exception: pass
 
+# ---- Modo suave: el editor nunca debe hacer lento el ordenador, aunque tarde mucho más ----
+#   Mide núcleos y memoria, usa como mucho la mitad de los núcleos y siempre con prioridad baja (lo hereda todo: ffmpeg, Chrome…).
+#   EDITOR_HILOS y EDITOR_RAM_GB permiten fijarlo a mano (por ejemplo, para que vaya aún más despacio).
+import time
+
+def ram_gb(libre=False):
+    try:
+        if os.name == "nt":
+            import ctypes
+            class M(ctypes.Structure):
+                _fields_ = [("l", ctypes.c_ulong), ("p", ctypes.c_ulong)] + [(n, ctypes.c_ulonglong) for n in ("tot", "disp", "a", "b", "c", "d", "e")]
+            m = M(); m.l = ctypes.sizeof(M); ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(m))
+            return (m.disp if libre else m.tot) / 2 ** 30
+        if sys.platform == "darwin":
+            import subprocess
+            if not libre: return int(subprocess.check_output(["sysctl", "-n", "hw.memsize"])) / 2 ** 30
+            v = subprocess.check_output(["vm_stat"], text=True)
+            pag = lambda n: int(next(l for l in v.splitlines() if l.startswith(n)).split(":")[1].strip(" ."))
+            return (pag("Pages free") + pag("Pages inactive") + pag("Pages purgeable")) * 16384 / 2 ** 30
+        d = {l.split(":")[0]: int(l.split()[1]) for l in open("/proc/meminfo")}
+        return d["MemAvailable" if libre else "MemTotal"] / 2 ** 20
+    except Exception:
+        return 4.0 if not libre else 2.0
+
+NUCLEOS = os.cpu_count() or 2
+RAM_GB = float(os.environ.get("EDITOR_RAM_GB") or ram_gb())
+HILOS = int(os.environ.get("EDITOR_HILOS") or max(1, min(4, NUCLEOS // 2)))    # la mitad de los núcleos, 4 como mucho
+TANDA_CHROME = 200 if RAM_GB >= 16 else 100 if RAM_GB >= 8 else 40             # con poca memoria, Chrome se renueva más a menudo
+MODELO_WHISPER = os.environ.get("MODELO") or ("small" if RAM_GB >= 6 else "base")
+for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"): os.environ[_v] = str(HILOS)
+
+def _modo_suave():
+    try:
+        if os.name == "nt":                                                    # prioridad baja y solo unos núcleos; los hijos lo heredan
+            import ctypes
+            k = ctypes.windll.kernel32; k.GetCurrentProcess.restype = ctypes.c_void_p; yo = k.GetCurrentProcess()
+            k.SetPriorityClass(ctypes.c_void_p(yo), 0x4000)
+            k.SetProcessAffinityMask(ctypes.c_void_p(yo), ctypes.c_size_t((1 << HILOS) - 1))
+        else:
+            if os.nice(0) < 15: os.nice(15 - os.nice(0))
+            if hasattr(os, "sched_setaffinity"): os.sched_setaffinity(0, set(sorted(os.sched_getaffinity(0))[:HILOS]))
+    except Exception:
+        pass
+_modo_suave()
+
+def respira(minimo_gb=None):
+    """si queda poca memoria libre, espera a que se libere antes de seguir (máximo 2 minutos)"""
+    minimo = minimo_gb if minimo_gb is not None else min(1.0, max(0.5, RAM_GB * 0.12))
+    for i in range(24):
+        if ram_gb(libre=True) >= minimo: return
+        if i == 0: print("  · poca memoria libre: espero un poco para no ralentizar el ordenador", flush=True)
+        time.sleep(5)
+
+def disco_libre_gb(ruta="."):
+    return shutil.disk_usage(ruta).free / 2 ** 30
+
 COMUN = os.path.dirname(os.path.abspath(__file__))
 EDITOR = os.path.dirname(os.path.dirname(COMUN))                 # .../editor
 RAIZ = os.path.dirname(EDITOR)                                    # carpeta que abrió el alumno

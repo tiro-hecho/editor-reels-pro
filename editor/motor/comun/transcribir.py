@@ -1,13 +1,13 @@
 # Transcribe uno o varios brutos palabra a palabra, en el propio ordenador (faster-whisper, sin internet una vez descargado el modelo).
 #   uso: python transcribir.py <video_o_audio> [<video_o_audio> ...]  -> <proyecto>/palabras/<nombre>.json  [{"w","s","e"}, ...]
-#   MODELO=small (por defecto, rápido) o medium/large-v3 (más preciso, más lento)
+#   Modelo según la memoria del ordenador (small, o base si hay poca). MODELO=medium/large-v3 lo fuerza (más preciso, más lento).
 import json, os, subprocess, sys, tempfile
-from rutas import ffmpeg, MODELOS
+from rutas import ffmpeg, MODELOS, MODELO_WHISPER, HILOS
 
 def transcribe(ruta, modelo=None):
     from faster_whisper import WhisperModel
-    modelo = modelo or os.environ.get("MODELO", "small")
-    m = WhisperModel(modelo, device="cpu", compute_type="int8", download_root=os.path.join(MODELOS, "whisper"))
+    modelo = modelo or MODELO_WHISPER
+    m = WhisperModel(modelo, device="cpu", compute_type="int8", cpu_threads=HILOS, num_workers=1, download_root=os.path.join(MODELOS, "whisper"))
     wav = os.path.join(tempfile.gettempdir(), "transcribir_%d.wav" % os.getpid())
     subprocess.run([ffmpeg(), "-v", "error", "-y", "-i", ruta, "-vn", "-ac", "1", "-ar", "16000", wav], check=True)
     segs, _ = m.transcribe(wav, language="es", word_timestamps=True, vad_filter=False)

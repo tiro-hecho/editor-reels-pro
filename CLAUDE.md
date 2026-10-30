@@ -38,6 +38,9 @@ Ejecuta la skill **`/empezar`**: prepara su ordenador (Mac o Windows), descarga 
 
 Usa siempre el Python del editor (lo crea `/empezar`): Mac `.venv/bin/python` · Windows `.venv\Scripts\python`. Donde pone `python`, es ese.
 
+## Modo suave: no se puede ralentizar su ordenador
+El motor mide el ordenador y usa como mucho la mitad de los núcleos (4 máximo) con prioridad baja; espera si queda poca memoria y borra los fotogramas de trabajo al terminar. **Nunca lances varios montajes o recortes a la vez**: un vídeo cada vez. Avisa antes de un paso largo y dile que puede seguir usando el ordenador. Si aun así le va lento, relanza con `EDITOR_HILOS=1`.
+
 ## Dónde está cada cosa
 - `editor/estilos/` las recetas · `editor/catalogo/` capturas para elegir · `editor/motor/` los motores (`comun/` es la base de todos)
 - `editor/subtitulos/` los presets de subtítulos · `editor/assets/` fuentes y efectos libres · `editor/recursos.json` lo que se descarga de Pixabay

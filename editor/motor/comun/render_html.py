@@ -81,7 +81,7 @@ def arrancar():
     pre = ["nice", "-n", "19"] if sys.platform.startswith("linux") else []
     extra = dict(creationflags=subprocess.CREATE_NEW_PROCESS_GROUP) if os.name == "nt" else dict(start_new_session=True)
     chrome = subprocess.Popen(pre + [CHROME, "--headless=new", "--disable-gpu", "--no-sandbox", "--hide-scrollbars", "--force-device-scale-factor=1",
-                               "--mute-audio", "--allow-file-access-from-files", "--disable-lcd-text", f"--remote-debugging-port={puerto}",
+                               "--mute-audio", "--renderer-process-limit=1", "--disable-extensions", "--disable-background-networking", "--allow-file-access-from-files", "--disable-lcd-text", f"--remote-debugging-port={puerto}",
                                f"--user-data-dir={udd}", "--no-first-run", "--no-default-browser-check", f"--window-size={W_},{H_}", "about:blank"],
                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, **extra)
     obj = None

@@ -1,6 +1,8 @@
 # Afina las siluetas: borde firme sin halo, 1-2 px hacia dentro (nada de fondo pegado) y huecos pequeños rellenos (manos, asas).
 # NO mezcla fotogramas vecinos: cuando la persona se mueve, eso deja halo. mascaras_u2net/ -> mascaras/
 import os, numpy as np, cv2
+from rutas import HILOS
+cv2.setNumThreads(HILOS)
 W, H = 1080, 1920
 os.makedirs("mascaras", exist_ok=True)
 fs = sorted(f for f in os.listdir("mascaras_u2net") if f.endswith(".png"))

@@ -4,7 +4,7 @@
 #   Los tiempos se miden con cortes_energia.py (nunca a ojo ni con los de Whisper). Velocidad: 1.07 con voz, 1.6 en demostraciones sin voz.
 #   Los brutos HDR del iPhone se pasan a SDR con tonemapping; el resto se escala sin tocar el color.
 import json, os, subprocess, sys
-from rutas import ffmpeg, ffprobe
+from rutas import ffmpeg, ffprobe, HILOS, respira
 FF, FP = ffmpeg(), ffprobe()
 M = json.load(open("montaje.json", encoding="utf-8"))
 W, H = (1920, 1080) if M.get("formato") == "horizontal" else (1080, 1920)
@@ -20,17 +20,17 @@ TONO = "zscale=t=linear:npl=203,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=
 os.makedirs("seg", exist_ok=True); lista, hdr = [], {}
 for i, (src, a, b, _, v) in enumerate(M["tramos"]):
     if src not in hdr: hdr[src] = es_hdr(src)
-    o = f"{i:02d}.mov"; lista.append(f"file '{o}'")
-    subprocess.run([FF, "-v", "error", "-y", "-ss", f"{a:.3f}", "-t", f"{b - a:.3f}", "-i", src,
+    respira(); o = f"{i:02d}.mov"; lista.append(f"file '{o}'")
+    subprocess.run([FF, "-v", "error", "-y", "-threads", str(HILOS), "-filter_threads", "1", "-ss", f"{a:.3f}", "-t", f"{b - a:.3f}", "-i", src,
                     "-vf", f"{TONO if hdr[src] else ESCALA},setpts=PTS/{v},fps=30",
                     "-af", f"atempo={v},afade=t=in:d=0.012,afade=t=out:st={max(0, (b - a) / v - 0.015):.3f}:d=0.015",
-                    "-c:v", "libx264", "-crf", "14", "-preset", "fast", "-pix_fmt", "yuv420p", "-c:a", "pcm_s16le", "-ar", "48000", "-ac", "1",
+                    "-c:v", "libx264", "-crf", "14", "-preset", "fast", "-threads", str(HILOS), "-pix_fmt", "yuv420p", "-c:a", "pcm_s16le", "-ar", "48000", "-ac", "1",
                     os.path.join("seg", o)], check=True)
     print(f"  tramo {i + 1}/{len(M['tramos'])}", flush=True)
 open(os.path.join("seg", "lista.txt"), "w").write("\n".join(lista))
-subprocess.run([FF, "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", os.path.join("seg", "lista.txt"),
+subprocess.run([FF, "-v", "error", "-y", "-threads", str(HILOS), "-f", "concat", "-safe", "0", "-i", os.path.join("seg", "lista.txt"),
                 "-vf", f"tpad=stop_mode=clone:stop_duration={COLA}", "-af", f"apad=pad_dur={COLA}",
-                "-c:v", "libx264", "-crf", "14", "-preset", "fast", "-pix_fmt", "yuv420p", "-c:a", "pcm_s16le", "base.mov"], check=True)
+                "-c:v", "libx264", "-crf", "14", "-preset", "fast", "-threads", str(HILOS), "-pix_fmt", "yuv420p", "-c:a", "pcm_s16le", "base.mov"], check=True)
 subprocess.run([FF, "-v", "error", "-y", "-i", "base.mov", "-vn", "-ac", "1", "-ar", "48000", "base.wav"], check=True)
 
 # palabras y tramos en tiempo final

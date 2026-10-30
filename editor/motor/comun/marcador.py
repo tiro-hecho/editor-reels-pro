@@ -2,15 +2,16 @@
 # con una capa HTML encima renderizada a 60 fps y promediada de dos en dos (desenfoque de movimiento real).
 #   uso: lo llama montar.py desde la carpeta del vídeo
 import os, sys, json, math, subprocess, numpy as np
+from rutas import HILOS, respira
 from PIL import Image
 
 W, H, FPS = 1080, 1920, 30
 DUR = json.load(open("plan.json"))["dur"]
 # Las capas HTML (overlay/ a 60 fps y overlay_detras/ a 30 fps) las pinta antes montar.py.
 
-dec = subprocess.Popen(["ffmpeg", "-v", "error", "-i", "base.mov", "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], stdout=subprocess.PIPE)
+dec = subprocess.Popen(["ffmpeg", "-v", "error", "-threads", str(HILOS), "-i", "base.mov", "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], stdout=subprocess.PIPE)
 enc = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
-                        "-c:v", "libx264", "-crf", "16", "-preset", "medium", "-pix_fmt", "yuv420p", "video.mp4"], stdin=subprocess.PIPE)
+                        "-c:v", "libx264", "-crf", "16", "-preset", "medium", "-threads", str(HILOS), "-pix_fmt", "yuv420p", "video.mp4"], stdin=subprocess.PIPE)
 # Cámara virtual (camara.json): golpes de zoom, empujes lentos y destellos, sobre el plano de la persona (no sobre los gráficos).
 #   [{"t": 3.2, "tipo": "golpe", "z": 1.15}, {"t0": 5, "t1": 8, "tipo": "empuje", "z": 1.07}, {"t": 9.1, "tipo": "flash"}]
 CAM = json.load(open("camara.json")) if os.path.exists("camara.json") else []
@@ -44,6 +45,7 @@ def zoom_c(im, z, cy):
     k = 1 / z; return im.transform(im.size, Image.AFFINE, (k, 0, (im.width - k * im.width) / 2, 0, k, min(max(cy - k * cy, 0), im.height - k * im.height)), resample=Image.BICUBIC)
 last = None
 for n in range(int(round(DUR * FPS))):
+    if n % 60 == 0: respira()
     b = dec.stdout.read(W * H * 3)
     fr = Image.frombytes("RGB", (W, H), b) if len(b) == W * H * 3 else last; last = fr
     t = n / FPS; z = zoom_en(t) * 1.03; e = next((x for x in ESC if x["t0"] <= t < x["t1"]), None)
