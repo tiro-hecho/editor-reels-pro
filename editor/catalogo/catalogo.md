@@ -6,6 +6,8 @@ Motor listo para Mac y Windows: `ranking-circulos`, `dos-barras`, `errores-detra
 
 | Estilo | Para qué | Captura |
 |---|---|---|
+| 🆕 `movil-cifras-coral` | Persona a cámara vendiendo un servicio: siempre de fondo, móvil con pantalla de bloqueo, 100 muñecos a pantalla completa, cifra blanca + cursiva coral, subtítulos letra a letra | `capturas/movil-cifras-coral.jpg` |
+| 🆕 `zambullida-epica` | Anuncio épico con voz en off a 60 fps: la cámara se mete dentro de los objetos (globo, mapa, móviles 3D, reloj, notas) y la escena siguiente se abre desde dentro | `capturas/zambullida-epica.jpg` |
 | ⭐ `ranking-circulos` | Top 5 / del 1 al 10: panel al lado, cada puesto con su foto en círculo que vuela a su sitio, el 1 en dorado. El favorito | `capturas/ranking-circulos.jpg` |
 | `errores-detras` | Lista de errores con un gráfico propio por punto DETRÁS del cuerpo y cierre con la ficha de Google | `capturas/errores-detras.jpg` |
 | `mal-bien-detras` | Esto está mal / esto está bien: MAL rojo y BIEN verde gigantes detrás del cuerpo | `capturas/mal-bien-detras.jpg` |
