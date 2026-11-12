@@ -1,6 +1,7 @@
 """Motor de referencia: los 6 estilos predefinidos programados (subtítulos, glow, tarjeta, texto detrás, karaoke). La IA lo usa como base y lo adapta a cada vídeo: cambia WS (palabras con tiempos), los tramos TR y las posiciones según dónde esté la cara."""
 import json, subprocess, os, numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
+import sys; sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "comun")); import zonas_seguras as ZS   # zona segura común de las redes
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 W, H, FPS = 1080, 1920, 30
 F = os.environ.get("FUENTES", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "5-fuentes"))
@@ -39,12 +40,15 @@ def alfa(im, a):
     r = im.copy(); r.putalpha(r.split()[3].point(lambda v: int(v * a))); return r
 def pon(fr, im, cx, cy, a=1.0, s=1.0, izq=None):
     if a <= 0.01: return
-    if izq is None and im.width * s > 0:   # nunca fuera de la zona segura (60-940): se reduce lo que no quepa
-        bb = im.getbbox()
-        if bb and (bb[2] - bb[0]) * s > 840: s = s * 840 / ((bb[2] - bb[0]) * s)
+    # regla obligatoria: nada fuera de la zona segura de las redes (zonas_seguras.py): se reduce y se recoloca lo que no quepa
+    bb = im.getbbox()
+    if bb:
+        k = min(1.0, (ZS.X1 - ZS.X0) / max((bb[2] - bb[0]) * s, 1), (ZS.Y1 - ZS.Y0) / max((bb[3] - bb[1]) * s, 1)); s *= k
     if s != 1.0: im = im.resize((max(1, int(im.width * s)), max(1, int(im.height * s))), Image.LANCZOS)
-    x = int(izq - (im.width - 0) * 0 if izq is not None else cx - im.width / 2)
-    fr.alpha_composite(alfa(im, a), (x, int(cy - im.height / 2)))
+    x = int(izq if izq is not None else cx - im.width / 2); y = int(cy - im.height / 2)
+    bb = im.getbbox()
+    if bb: x = min(max(x, ZS.X0 - bb[0]), ZS.X1 - bb[2]); y = min(max(y, ZS.Y0 - bb[1]), ZS.Y1 - bb[3])
+    fr.alpha_composite(alfa(im, a), (x, y))
 
 # ---------------------------------------------------------------- tramos
 TR = [(0.0, 6.55, "1 · Editorial contraste"), (6.55, 8.2, "2 · Minimal palabra"), (8.2, 10.15, "3 · Neón glow"),

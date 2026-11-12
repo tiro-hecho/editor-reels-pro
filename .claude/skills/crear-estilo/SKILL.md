@@ -4,8 +4,11 @@ description: Crea o mejora un estilo de edición propio del alumno a partir de l
 ---
 # Crear un estilo
 
+> 🔴 **Zona segura de las redes (máxima prioridad, sin que el alumno lo pida):** nada de texto, subtítulos, rótulos, tarjetas ni gráficos fuera de **x 66–934, y 220–1440** en 1080×1920 (la más restrictiva de Instagram Reels, TikTok y Facebook: barra de arriba, pie con nombre y descripción, columna de botones y margen lateral). Nunca se sale del ancho de la pantalla. Está en `editor/motor/comun/zonas_seguras.py`: el motor lo recoloca o lo reduce solo y avisa en el registro, y `montar.py` se para si algo queda fuera. En un estilo nuevo, diséñalo ya dentro; no lo desactives nunca.
+> Si la referencia pone algo fuera de la zona, en el estilo del alumno va dentro (se adapta la posición o el tamaño), y lo escribes así en la receta.
+
 1. Pregunta (de una en una) qué tipo de vídeos graba, qué le gusta y qué no, y pide 1-3 reels de referencia.
 2. Mide las referencias (`editor/motor/utilidades/analizar_referencia.py`): cortes por segundo, palabras por minuto, efectos por segundo, transiciones, subtítulos y gráficos.
 3. Escribe la receta con el mismo formato que los estilos de `editor/estilos/` (Para, Paleta, Receta en 6-8 puntos, Reglas de movimiento, Sonido, Revisión) en `mi-edicion/estilos/<nombre>.md`.
-4. Haz 3 maquetas en foto sobre un fotograma suyo y que elija antes de editar un vídeo entero.
+4. Haz 3 maquetas en foto (con la zona segura dibujada: `PY editor/motor/comun/zonas_seguras.py dibujar <foto> <salida>`) sobre un fotograma suyo y que elija antes de editar un vídeo entero.
 5. Cada corrección se añade a «Aprobado» o «Rechazado» dentro del propio estilo.

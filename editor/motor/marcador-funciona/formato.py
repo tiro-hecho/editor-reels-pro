@@ -2,7 +2,7 @@
 # marcador negro translúcido arriba «✓ FUNCIONA | ✕ NO FUNCIONA» con fotos cuadradas que se van colocando.
 # Cada mito: su foto entra grande en el pecho con el mito como título; al oír el veredicto se le pone ✓ o ✕
 # y vuela a su columna. Subtítulos solo en las respuestas (blancos, negrita, la clave más grande).
-# Zona segura de todas las redes: todo entre x 66 y 934, nada por debajo de 1330, nada sobre los botones de la derecha.
+# Zona segura de todas las redes: todo entre x 66 y 934, nada por debajo de 1330 (más estricto que la zona común de zonas_seguras.py: x 66–934, y 220–1440).
 import json, os, re, subprocess
 P = json.load(open("plan.json")); DUR = P["dur"]; WD = P["palabras"]; TR = P["tramos"]
 from rutas import *          # rutas comunes (fuentes, efectos, música) — igual en Mac y Windows

@@ -2,7 +2,9 @@
 Uso: python3 check_zonas.py video.mp4  →  video_zonas.jpg (hoja con cuadrícula) + informe en pantalla."""
 import sys, subprocess, numpy as np
 from PIL import Image, ImageDraw
-V = sys.argv[1]; W, H = 1080, 1920; X0, X1, Y0, Y1 = 60, 940, 220, 1440
+import os; sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "comun"))
+from zonas_seguras import W, H, X0, X1, Y0, Y1      # la zona segura común de todas las redes (un solo sitio)
+V = sys.argv[1]
 dur = float(subprocess.run(["ffprobe","-v","error","-show_entries","format=duration","-of","csv=p=0",V],capture_output=True,text=True).stdout)
 n = min(24, max(6, int(dur))); fotos, avisos = [], []
 for i in range(n):

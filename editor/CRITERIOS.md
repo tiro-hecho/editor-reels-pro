@@ -13,7 +13,7 @@ Sale de editar muchas versiones de reels reales de entrenadores y apuntar cada c
 - ✅ **Helvetica Neue Bold** (en Windows, Inter Bold), **minúscula y muy junta** (tracking −6 %). La palabra clave es **la misma letra, más grande**.
 - ✅ De 1 a 3 palabras, que aparecen al decirse.
 - ✅ Que **sigan a la persona** y **nunca le tapen la cara**: si la tocan, se mueven.
-- ✅ Siempre dentro de la zona segura: x 66–934, y 220–1440.
+- ✅ Siempre dentro de la zona segura: x 66–934, y 220–1440 (regla obligatoria de todos los estilos; ver `editor/motor/comun/zonas_seguras.py`).
 - ❌ Mayúscula condensada mezclada, cursivas, cajas de fondo y sombras cargadas.
 
 ## 3. Gráficos

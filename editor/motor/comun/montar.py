@@ -76,6 +76,12 @@ if "capas" in hacer:
     if disco_libre_gb() < 5: sys.exit("Necesito al menos 5 GB libres en el disco para este paso. Libera espacio y repite con --desde capas.")
     capa("overlay.html", "overlay", 60); renumera("overlay", round(DUR * 60))
     if os.path.exists("detras.html"): capa("detras.html", "overlay_detras", 30); renumera("overlay_detras", round(DUR * 30))
+    # comprobación obligatoria de la zona segura de las redes (la guardia ya recoloca; esto es la red de seguridad)
+    from zonas_seguras import revisar_capas
+    av = revisar_capas([d for d in ("overlay", "overlay_detras") if os.path.isdir(d)])
+    if av: sys.exit("Hay contenido fuera de la zona segura de Instagram/TikTok/Facebook:\n  " + "\n  ".join(av[:12]) +
+                    "\nCorrige el formato.py (mueve o achica eso) y repite con --desde formato.")
+    print("  · zona segura: todo dentro (x 66–934, y 220–1440)", flush=True)
 # 6. componer la imagen final
 if "componer" in hacer: corre([PY, os.path.join(COMUN, "marcador.py")])
 # 7. mezcla: voz + música + efectos

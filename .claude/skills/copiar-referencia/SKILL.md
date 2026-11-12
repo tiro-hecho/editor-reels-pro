@@ -4,6 +4,9 @@ description: Copia el estilo de edición de un reel de referencia sobre los víd
 ---
 # Copiar una referencia
 
+> 🔴 **Zona segura de las redes (máxima prioridad, sin que el alumno lo pida):** nada de texto, subtítulos, rótulos, tarjetas ni gráficos fuera de **x 66–934, y 220–1440** en 1080×1920 (la más restrictiva de Instagram Reels, TikTok y Facebook: barra de arriba, pie con nombre y descripción, columna de botones y margen lateral). Nunca se sale del ancho de la pantalla. Está en `editor/motor/comun/zonas_seguras.py`: el motor lo recoloca o lo reduce solo y avisa en el registro, y `montar.py` se para si algo queda fuera. En un estilo nuevo, diséñalo ya dentro; no lo desactives nunca.
+> Se copia 1:1 todo **menos esto**: si en la referencia algo queda bajo los botones, el pie o la barra de arriba, o se sale del ancho, en el nuestro va dentro de la zona y lo apuntas en `DIFF.md` como diferencia aceptada.
+
 1. Descarga la referencia con yt-dlp en `mi-edicion/referencias/<nombre>/` (la versión de mejor calidad).
 2. Trabaja en ventanas de 5 segundos. En cada ventana:
    - `REF.md`: qué pasa fotograma a fotograma (posiciones, tamaños, fuentes, colores, curvas de movimiento), **medido en los fotogramas, nunca adivinado**;

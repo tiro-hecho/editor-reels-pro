@@ -4,7 +4,12 @@ description: Edita vídeos en bruto y los convierte en reels profesionales con u
 ---
 # Editar reel
 
-Lee antes `editor/CRITERIOS.md`: son obligatorios. Python del editor: Mac `.venv/bin/python` · Windows `.venv\Scripts\python` (en esta guía, `PY`).
+Lee antes `editor/CRITERIOS.md`: son obligatorios.
+
+> 🔴 **Zona segura de las redes (máxima prioridad, sin que el alumno lo pida):** nada de texto, subtítulos, rótulos, tarjetas ni gráficos fuera de **x 66–934, y 220–1440** en 1080×1920 (la más restrictiva de Instagram Reels, TikTok y Facebook: barra de arriba, pie con nombre y descripción, columna de botones y margen lateral). Nunca se sale del ancho de la pantalla. Está en `editor/motor/comun/zonas_seguras.py`: el motor lo recoloca o lo reduce solo y avisa en el registro, y `montar.py` se para si algo queda fuera. En un estilo nuevo, diséñalo ya dentro; no lo desactives nunca.
+>
+> Al adaptar `formato.py`, coloca cada texto y gráfico ya dentro de la zona; si el registro dice «zona segura: … recolocado», corrige el formato para que no haga falta.
+ Python del editor: Mac `.venv/bin/python` · Windows `.venv\Scripts\python` (en esta guía, `PY`).
 
 ## 0. Antes de editar, 3 preguntas rápidas (solo las que no sepas ya)
 1. **¿Dónde están los vídeos?** En `mi-edicion/brutos`, arrastrados al chat o en otra carpeta que te diga (los usas desde ahí, sin moverlos ni borrarlos).
@@ -34,7 +39,7 @@ Mira los planos (un fotograma cada 0,5 s) cuando lo que se ve importe (p. ej. d�
 
 ## 6. Revisa antes de enseñar (obligatorio)
 - Transcribe `base.wav` y compara con el guion: **no puede faltar ni cortarse ninguna palabra**.
-- Mira `hoja.jpg` y 6 fotogramas a tamaño real: nada tapa la cara, nada se sale de la zona segura, los subtítulos no pisan animaciones, los gráficos detrás del cuerpo no quedan escondidos.
+- Mira `hoja.jpg` y 6 fotogramas a tamaño real: nada tapa la cara, nada se sale de la zona segura (`PY editor/motor/utilidades/check_zonas.py final_musica.mp4` pinta la zona encima), los subtítulos no pisan animaciones, los gráficos detrás del cuerpo no quedan escondidos.
 - Sin silencios de más de 0,25 s salvo la cola final.
 
 ## 7. Enséñalo y corrige

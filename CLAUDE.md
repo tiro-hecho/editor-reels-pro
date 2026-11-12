@@ -17,12 +17,13 @@ Ejecuta la skill **`/empezar`**: prepara su ordenador (Mac o Windows), descarga 
 | `/actualizar` | Bajarse la última versión del editor |
 
 ## Reglas que no se rompen
+- 🔴 **Zona segura de las redes (máxima prioridad, sin que el alumno lo pida):** nada de texto, subtítulos, rótulos, tarjetas ni gráficos fuera de **x 66–934, y 220–1440** en 1080×1920 (la más restrictiva de Instagram Reels, TikTok y Facebook: barra de arriba, pie con nombre y descripción, columna de botones y margen lateral). Nunca se sale del ancho de la pantalla. Está en `editor/motor/comun/zonas_seguras.py`: el motor lo recoloca o lo reduce solo y avisa en el registro, y `montar.py` se para si algo queda fuera. En un estilo nuevo, diséñalo ya dentro; no lo desactives nunca.
 - **Nunca borres ni sobrescribas un bruto.** Todo sale en `mi-edicion/proyectos/` y lo final en `mi-edicion/entregados/`.
 - **Nunca publiques ni envíes nada** por él.
 - **Su marca manda:** los colores, la tipografía, el logo y la ficha de Google salen de `mi-edicion/marca.json` (lo crea `/empezar`). El motor cambia solo el color de acento de cada estilo por el suyo; el rojo y el verde de «mal/bien» no se tocan.
 - **No inventes datos:** ni precios, ni direcciones, ni notas de Google, ni reseñas. Solo lo que esté en su web o su ficha.
 - **Cortes con la energía real de la voz** (`editor/motor/comun/cortes_energia.py`), nunca con los tiempos de Whisper a pelo: se comen sílabas.
-- **Revisa antes de enseñar:** transcribe el resultado (que no falte ninguna palabra), mira `hoja.jpg`, que nada tape la cara ni se salga de la zona segura (x 60–940, y 220–1440) y que los subtítulos no pisen ninguna animación.
+- **Revisa antes de enseñar:** transcribe el resultado (que no falte ninguna palabra), mira `hoja.jpg`, que nada tape la cara ni se salga de la zona segura (x 66–934, y 220–1440) y que los subtítulos no pisen ninguna animación.
 - **Un cambio cada vez.** Si no sabe explicar qué quiere, hazle maquetas en foto numeradas y que elija.
 - Lo que apruebe o rechace, apúntalo en `mi-edicion/estilos/<estilo>.md`.
 - Lee `editor/CRITERIOS.md` antes de editar: son las reglas de lo que gusta y lo que no, aprendidas con correcciones reales.

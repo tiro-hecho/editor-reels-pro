@@ -4,6 +4,8 @@
 # Funciona en Mac, Windows y Linux con Chrome, Edge o Chromium (el que haya). Tamaño: RENDER_W x RENDER_H (por defecto 1080x1920).
 import base64, json, os, random, shutil, socket, struct, subprocess, sys, tempfile, time, urllib.request
 from pathlib import Path
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from zonas_seguras import GUARDIA_JS      # regla obligatoria: nada fuera de la zona segura de Reels/TikTok/Facebook
 
 pagina, destino, dur = sys.argv[1], sys.argv[2], sys.argv[3]
 FPS = int(sys.argv[4]) if len(sys.argv) > 4 else 30
@@ -98,7 +100,8 @@ def arrancar():
     cdp("Emulation.setDeviceMetricsOverride", width=W_, height=H_, deviceScaleFactor=1, mobile=False)
     for _ in range(80):
         r = cdp("Runtime.evaluate", expression="typeof setT === 'function' && document.fonts.status === 'loaded'", returnByValue=True)
-        if r["result"].get("value") is True: return
+        if r["result"].get("value") is True:
+            cdp("Runtime.evaluate", expression=GUARDIA_JS, returnByValue=True); return
         time.sleep(0.25)
     raise RuntimeError("la página no expuso setT() o no cargaron las fuentes")
 
@@ -125,7 +128,8 @@ try:
         t = SUELTOS[f] if SUELTOS else f / FPS; png = None
         for intento in range(3):
             try:
-                cdp("Runtime.evaluate", expression=f"setT({t})", returnByValue=True)
+                av = cdp("Runtime.evaluate", expression=f"setT({t}); window.__zsSaca ? __zsSaca() : ''", returnByValue=True)["result"].get("value")
+                if av: print("\n".join("  · " + a for a in av.split("\n")), flush=True)
                 png = base64.b64decode(cdp("Page.captureScreenshot", format="png", optimizeForSpeed=True, captureBeyondViewport=True,
                                            clip={"x": 0, "y": 0, "width": W_, "height": H_, "scale": 1})["data"]); break
             except Exception as e:
