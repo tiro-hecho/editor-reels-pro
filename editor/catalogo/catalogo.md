@@ -20,6 +20,7 @@ Motor listo para Mac y Windows: `ranking-circulos`, `dos-barras`, `errores-detra
 | **10** | `analisis-tecnica` | Corregir un ejercicio: congelado con líneas sobre el cuerpo, ✓/✕ | `capturas/analisis-tecnica.jpg` |
 | **11** | `analisis-repeticion` | Manera incorrecta / correcta, ejercicio a ejercicio | `capturas/analisis-repeticion.jpg` |
 | **12** | 🆕 `motion-referencias` | Persona a cámara con pasos y cifras: una técnica de After Effects distinta por idea (pantalla rota, cursor, móviles, cartel, rueda, órbita, emoji, encuesta) y subtítulos de gris a blanco | `capturas/motion-referencias.jpg` |
+| **13** | 🆕 `tabla-barras-vuelan` | «Si quieres X, haz Y» en tabla bajo la cara: barras verdes y rojas que salen volando al decirlo y dejan el texto letra a letra. Variante del 7 | `capturas/tabla-barras-vuelan.jpg` |
 
 ## Resto del catálogo (miniaturas en `miniaturas/`)
 
