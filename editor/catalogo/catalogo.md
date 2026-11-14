@@ -19,6 +19,7 @@ Motor listo para Mac y Windows: `ranking-circulos`, `dos-barras`, `errores-detra
 | **9** | `marcador-circulos` | Funciona / no funciona: marcador arriba con fotos en círculo | `capturas/marcador-circulos.jpg` |
 | **10** | `analisis-tecnica` | Corregir un ejercicio: congelado con líneas sobre el cuerpo, ✓/✕ | `capturas/analisis-tecnica.jpg` |
 | **11** | `analisis-repeticion` | Manera incorrecta / correcta, ejercicio a ejercicio | `capturas/analisis-repeticion.jpg` |
+| **12** | 🆕 `motion-referencias` | Persona a cámara con pasos y cifras: una técnica de After Effects distinta por idea (pantalla rota, cursor, móviles, cartel, rueda, órbita, emoji, encuesta) y subtítulos de gris a blanco | `capturas/motion-referencias.jpg` |
 
 ## Resto del catálogo (miniaturas en `miniaturas/`)
 
