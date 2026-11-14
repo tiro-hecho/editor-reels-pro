@@ -9,6 +9,8 @@ Son presets de subtítulos que funcionan **con cualquier estilo de edición**. S
 | **3** | **repartidos** (APROBADO) | Helvetica Neue Condensed Bold blanca de 104 px; una palabra por renglón, en zigzag pegada a izquierda y derecha, por debajo de la cara. Cada palabra sube, se enfoca y aparece al decirse | `03-repartidos/` |
 | **4** | **bloque** (APROBADO) | Clave enorme en Helvetica Neue Bold blanca y palabras pequeñas colgadas en sus esquinas (antes arriba a la izquierda, después abajo a la derecha); cada palabra aparece al decirse. Sin sombra ni caja, sobre zona oscura. Vale en vertical y horizontal | `04-bloque/` |
 
+Cada `muestra.png` lleva su número arriba (1 a 4): pídelo por número.
+
 Cada carpeta trae:
 - `LEEME.md`: la receta completa (aspecto, cómo agrupa las palabras, animación, cómo se usa y qué no hacer).
 - El script que genera la secuencia de PNG transparentes.

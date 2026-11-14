@@ -2,21 +2,23 @@
 
 ## Formatos completos (aprobados en vídeos reales, con captura)
 
+Cada captura lleva su número arriba: pide el estilo por su número («hazlo con el estilo 3»).
+
 Motor listo para Mac y Windows: `ranking-circulos`, `dos-barras`, `errores-detras`, `mal-bien-detras`, `marcador-funciona`. El resto trae un motor de referencia que Claude adapta.
 
-| Estilo | Para qué | Captura |
-|---|---|---|
-| 🆕 `movil-cifras-coral` | Persona a cámara vendiendo un servicio: siempre de fondo, móvil con pantalla de bloqueo, 100 muñecos a pantalla completa, cifra blanca + cursiva coral, subtítulos letra a letra | `capturas/movil-cifras-coral.jpg` |
-| 🆕 `zambullida-epica` | Anuncio épico con voz en off a 60 fps: la cámara se mete dentro de los objetos (globo, mapa, móviles 3D, reloj, notas) y la escena siguiente se abre desde dentro | `capturas/zambullida-epica.jpg` |
-| ⭐ `ranking-circulos` | Top 5 / del 1 al 10: panel al lado, cada puesto con su foto en círculo que vuela a su sitio, el 1 en dorado. El favorito | `capturas/ranking-circulos.jpg` |
-| `errores-detras` | Lista de errores con un gráfico propio por punto DETRÁS del cuerpo y cierre con la ficha de Google | `capturas/errores-detras.jpg` |
-| `mal-bien-detras` | Esto está mal / esto está bien: MAL rojo y BIEN verde gigantes detrás del cuerpo | `capturas/mal-bien-detras.jpg` |
-| `tiro-hecho-horizontal` (en pruebas) | Vídeos horizontales 16:9 (YouTube, VSL, lecciones): texto gigante detrás, escenas de interfaz, subtítulos en minúscula | `capturas/tiro-hecho-horizontal.jpg` |
-| `dos-barras` | «Si quieres X, haz Y»: SI QUIERES en rojo, HAZ ESTO en verde | `capturas/dos-barras.jpg` |
-| `pesas-que-se-encienden` | Lo malo, lo bueno y lo perfecto con objetos reales que se iluminan | `capturas/pesas-que-se-encienden.jpg` |
-| `marcador-circulos` | Funciona / no funciona: marcador arriba con fotos en círculo | `capturas/marcador-circulos.jpg` |
-| `analisis-tecnica` | Corregir un ejercicio: congelado con líneas sobre el cuerpo, ✓/✕ | `capturas/analisis-tecnica.jpg` |
-| `analisis-repeticion` | Manera incorrecta / correcta, ejercicio a ejercicio | `capturas/analisis-repeticion.jpg` |
+| N.º | Estilo | Para qué | Captura |
+|---|---|---|---|
+| **1** | 🆕 `movil-cifras-coral` | Persona a cámara vendiendo un servicio: siempre de fondo, móvil con pantalla de bloqueo, 100 muñecos a pantalla completa, cifra blanca + cursiva coral, subtítulos letra a letra | `capturas/movil-cifras-coral.jpg` |
+| **2** | 🆕 `zambullida-epica` | Anuncio épico con voz en off a 60 fps: la cámara se mete dentro de los objetos (globo, mapa, móviles 3D, reloj, notas) y la escena siguiente se abre desde dentro | `capturas/zambullida-epica.jpg` |
+| **3** | ⭐ `ranking-circulos` | Top 5 / del 1 al 10: panel al lado, cada puesto con su foto en círculo que vuela a su sitio, el 1 en dorado. El favorito | `capturas/ranking-circulos.jpg` |
+| **4** | `errores-detras` | Lista de errores con un gráfico propio por punto DETRÁS del cuerpo y cierre con la ficha de Google | `capturas/errores-detras.jpg` |
+| **5** | `mal-bien-detras` | Esto está mal / esto está bien: MAL rojo y BIEN verde gigantes detrás del cuerpo | `capturas/mal-bien-detras.jpg` |
+| **6** | `tiro-hecho-horizontal` (en pruebas) | Vídeos horizontales 16:9 (YouTube, VSL, lecciones): texto gigante detrás, escenas de interfaz, subtítulos en minúscula | `capturas/tiro-hecho-horizontal.jpg` |
+| **7** | `dos-barras` | «Si quieres X, haz Y»: SI QUIERES en rojo, HAZ ESTO en verde | `capturas/dos-barras.jpg` |
+| **8** | `pesas-que-se-encienden` | Lo malo, lo bueno y lo perfecto con objetos reales que se iluminan | `capturas/pesas-que-se-encienden.jpg` |
+| **9** | `marcador-circulos` | Funciona / no funciona: marcador arriba con fotos en círculo | `capturas/marcador-circulos.jpg` |
+| **10** | `analisis-tecnica` | Corregir un ejercicio: congelado con líneas sobre el cuerpo, ✓/✕ | `capturas/analisis-tecnica.jpg` |
+| **11** | `analisis-repeticion` | Manera incorrecta / correcta, ejercicio a ejercicio | `capturas/analisis-repeticion.jpg` |
 
 ## Resto del catálogo (miniaturas en `miniaturas/`)
 
