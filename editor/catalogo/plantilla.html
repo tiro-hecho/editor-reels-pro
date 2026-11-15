@@ -6,7 +6,7 @@
 :root[data-theme=light]{--bg:#f5f4f0;--p:#fff;--p2:#efede8;--t:#141414;--s:#5f5f66;--l:#e2e0da;--ok:#1f9d55;--pr:#c26a00;--rf:#6b6b70}
 [hidden]{display:none!important}*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--t);font:15px/1.45 -apple-system,"Segoe UI",Inter,Helvetica,Arial,sans-serif}
 button,select,input{font:inherit;color:inherit}
-header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--l)}
+header{position:relative;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--l)}
 .hd{max-width:1400px;margin:0 auto;padding:16px 16px 10px}
 .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 h1{margin:0;font-size:24px;letter-spacing:-.02em;font-weight:900}h1 b{color:var(--a)}
@@ -53,6 +53,14 @@ main{max-width:1400px;margin:0 auto;padding:16px}
 @keyframes fly{0%,45%{transform:none;opacity:1}70%{transform:translateX(160%);opacity:0}100%{transform:translateX(160%);opacity:0}}
 @keyframes bl{from{opacity:0;filter:blur(10px);color:#777}to{opacity:1;filter:none}}@keyframes orb{to{transform:rotate(360deg)}}
 @keyframes glow{from{text-shadow:0 0 6px currentColor}to{text-shadow:0 0 22px currentColor,0 0 2px #fff}}@keyframes drw{from{stroke-dashoffset:300}to{stroke-dashoffset:0}}
+.hero{background:radial-gradient(120% 140% at 0% 0%,color-mix(in srgb,var(--a) 22%,var(--p)) 0%,var(--p) 55%);border:1px solid var(--l);border-radius:22px;padding:20px;margin:4px 0 26px}
+.hero h2{margin:0 0 4px;font-size:clamp(22px,3vw,32px);letter-spacing:-.02em;font-weight:900}.hero>p{margin:0 0 14px;color:var(--s)}
+.tiles{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.tile{border:1px solid var(--l);background:var(--p2);border-radius:14px;padding:12px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:4px;transition:transform .15s,border-color .15s}
+.tile:hover{transform:translateY(-2px);border-color:var(--a)}.tile.on{border-color:var(--a);box-shadow:0 0 0 2px var(--a) inset}
+.tile .ic{font-size:24px}.tile b{font-size:14px;line-height:1.2}.tile small{color:var(--s);font-size:12px}
+.picks{margin-top:18px}.picks h3{margin:0 0 10px;font-size:16px}.picks .grid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.picks .card{border-color:var(--a)}.medal{position:absolute;bottom:8px;right:8px;z-index:9;background:var(--a);color:#111;font-weight:900;font-size:11px;border-radius:999px;padding:3px 9px}
 /* ficha */
 dialog{border:0;padding:0;border-radius:20px;background:var(--p);color:var(--t);width:min(980px,94vw);max-height:92vh}
 dialog::backdrop{background:rgba(0,0,0,.7)}
@@ -184,6 +192,12 @@ const RE={aprobado:0,pruebas:1,referencia:2,rechazado:3};
 function score(e){return (RE[e.est]??4)*10+((e.pub||[]).includes(F.p||PUB)?0:5)}
 function tarjeta(e){return `<article class="card" data-num="${e.num}"><div class="ph"><span class="num">${e.num}</span><span class="est ${e.est}">${E[e.est]||e.est}</span>${portada(e)}</div>
 <div class="cb"><h3>${esc(e.n)}</h3><p>${esc(e.para)}</p><span class="tag">${esc(G[e.g]||'')}${e.cliente?` · <b>${esc(e.cliente)}</b>`:''}</span></div></article>`}
+const IC={'si-quieres':'🎯','listas':'🏆','mal-bien':'✅','tecnica':'🏋️','vender':'💸','consejos':'💬','historia':'📖','sin-grabar':'🎙️','podcast':'🎧','avisos':'📍','horizontal':'🖥️'};
+function hero(){if(F.q||F.c)return '';const gs=Object.keys(G).filter(g=>cuenta('g',g));
+ let h=`<div class="hero"><h2>¿Qué vas a contar en tu vídeo?</h2><p>Toca una opción y te enseño los estilos que mejor funcionan para eso. Pincha cualquier vídeo para ver la ficha y copiar la frase para Claude.</p><div class="tiles">${gs.map(g=>`<button class="tile${F.g===g?' on':''}" data-hg="${g}"><span class="ic">${IC[g]||'🎬'}</span><b>${esc(G[g])}</b><small>${cuenta('g',g)} estilos</small></button>`).join('')}</div>`;
+ if(F.g){const top=D.estilos.filter(e=>e.g===F.g&&(!F.p||(e.pub||[]).includes(F.p))).sort((a,b)=>(score(a)-score(b))||a.num-b.num).slice(0,3);
+  if(top.length)h+=`<div class="picks"><h3>⭐ Lo mejor para «${esc(G[F.g])}»</h3><div class="grid">${top.map((e,i)=>tarjeta(e).replace('<div class="ph">',`<div class="ph"><span class="medal">${['1.ª opción','2.ª opción','3.ª opción'][i]}</span>`)).join('')}</div></div>`}
+ return h+'</div>'}
 function pinta(){
  let L=D.estilos.filter(e=>(!F.q||(e.n+' '+e.para+' '+(e.cliente||'')).toLowerCase().includes(F.q))&&(!F.p||(e.pub||[]).includes(F.p))&&(!F.g||e.g===F.g)&&(!F.c||e.cliente===F.c)&&(!F.e||e.est===F.e));
  const o=$('#ord').value;L.sort((a,b)=>o==='num'?a.num-b.num:o==='nom'?a.n.localeCompare(b.n):o==='est'?(RE[a.est]-RE[b.est])||a.num-b.num:(score(a)-score(b))||a.num-b.num);
@@ -192,11 +206,11 @@ function pinta(){
  else{const grupos=new Map();L.forEach(e=>{const ks=ag==='p'?((e.pub&&e.pub.length)?e.pub:['otros']):[ag==='g'?e.g:(e.cliente||'Sin cliente')];ks.forEach(k=>{if(!grupos.has(k))grupos.set(k,[]);grupos.get(k).push(e)})});
   let ord=[...grupos.keys()];if(ag==='p'){ord.sort((a,b)=>(a===PUB?-1:b===PUB?1:0))}if(ag==='g')ord.sort((a,b)=>Object.keys(G).indexOf(a)-Object.keys(G).indexOf(b));if(ag==='c')ord.sort((a,b)=>D.clientes.indexOf(a)-D.clientes.indexOf(b));
   html=ord.map(k=>`<section class="sec"><h2>${esc(ag==='g'?G[k]||k:ag==='p'?P[k]||'Otros':k)} <span>${grupos.get(k).length}</span></h2><div class="grid">${grupos.get(k).map(tarjeta).join('')}</div></section>`).join('')}
- $('#vE').innerHTML=html||'<p>No hay estilos con esos filtros.</p>';montaTiras($('#vE'));rebota()}
+ $('#vE').innerHTML=hero()+(html||'<p>No hay estilos con esos filtros.</p>');montaTiras($('#vE'));rebota()}
 $('#vE').addEventListener('mouseover',ev=>{const c=ev.target.closest('.card');const v=c&&c.querySelector('.vid');if(!v||v.dataset.on)return;v.dataset.on=1;v.src=v.dataset.src;v.oncanplay=()=>v.classList.add('ok');v.play().catch(()=>{});c.addEventListener('mouseleave',()=>{v.pause()},{once:false})});
 $('#vE').addEventListener('mouseout',ev=>{const c=ev.target.closest('.card');const v=c&&c.querySelector('.vid');if(v&&!c.contains(ev.relatedTarget))v.pause()});
 $('#vE').addEventListener('mouseover',ev=>{const c=ev.target.closest('.card');const v=c&&c.querySelector('.vid.ok');if(v&&v.paused)v.play().catch(()=>{})});
-$('#vE').onclick=ev=>{const c=ev.target.closest('.card');if(c)ficha(+c.dataset.num)};
+$('#vE').onclick=ev=>{const t=ev.target.closest('[data-hg]');if(t){F.g=F.g===t.dataset.hg?'':t.dataset.hg;document.querySelectorAll('#cG .chip').forEach(x=>x.classList.toggle('on',x.dataset.v===F.g));pinta();return}const c=ev.target.closest('.card');if(c)ficha(+c.dataset.num)};
 function ficha(n){const e=D.estilos.find(x=>x.num===n);const dl=$('#dlg');
  dl.innerHTML=`<div class="fi" style="position:relative"><div class="ph"><span class="num">${e.num}</span><span class="est ${e.est}">${E[e.est]}</span>${portada(e)}</div>
  <div class="tx"><button class="x" onclick="dlg.close()">×</button><h2>${esc(e.n)}</h2><p>${esc(e.para)}</p>${e.aspecto?`<p class="tag" style="font-size:13.5px"><b>Cómo se ve:</b> ${esc(e.aspecto)}</p>`:''}
@@ -228,7 +242,7 @@ function pintaS(){const cl=[...new Set(D.subs.map(s=>s.cliente||''))];
  $('#vS').querySelectorAll('[data-c]').forEach(r=>r.oninput=()=>{C[r.dataset.c]=r.value;salida();arranca()});
  $('#cpS').onclick=ev=>{try{navigator.clipboard.writeText($('#out').textContent)}catch(x){}ev.target.textContent='Copiado ✓'};salida();arranca()}
 function salida(){const base=D.subs.find(s=>s.n===C.n);const cambios=['anim','fuente','caso','tam','track','pal','col','acc','pos'].filter(k=>base&&String(base[k])!==String(C[k]));
- $('#out').textContent=`Subtítulos «${C.n}»`+(cambios.length?` cambiando: animación ${AN[C.anim]}, letra ${FU[C.fuente]} ${C.caso==='may'?'en mayúsculas':C.caso==='min'?'en minúsculas':''}, ${C.pal} palabra(s) a la vez, color ${C.col} y clave ${C.acc}, ${C.pos==='cabeza'?'sobre la cabeza':'en '+C.pos}.`:'.')}
+ $('#out').textContent=(base&&base.codigo?'':'(Sin código propio todavía: Claude lo programa con esta receta) ')+`Subtítulos «${C.n}»`+(cambios.length?` cambiando: animación ${AN[C.anim]}, letra ${FU[C.fuente]} ${C.caso==='may'?'en mayúsculas':C.caso==='min'?'en minúsculas':''}, ${C.pal} palabra(s) a la vez, color ${C.col} y clave ${C.acc}, ${C.pos==='cabeza'?'sobre la cabeza':'en '+C.pos}.`:'.')}
 let TM=[];function arranca(){TM.forEach(clearTimeout);TM=[];const sb=$('#sb');if(!sb)return;const px=sb.parentNode.clientWidth/360;
  const st=`font-family:${C.fuente};font-weight:${C.fuente.includes('Playfair')?700:800};font-style:${C.fuente.includes('Playfair')?'italic':'normal'};font-size:${C.tam*px*1.6}px;letter-spacing:${C.track/100}em;color:${C.col};top:${POS[C.pos]}%;${C.halo?'text-shadow:0 0 18px rgba(0,0,0,.45)':''}`;
  let t=0;const paso=330;const n=C.anim==='repartidos'?1:C.anim==='bloque'?3:+C.pal;

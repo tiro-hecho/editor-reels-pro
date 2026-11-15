@@ -52,4 +52,4 @@ Estado: **Aprobado** (salió en vídeos reales y gustó) · **En pruebas** · **
 
 ## Subtítulos
 
-Se configuran en la pestaña **Subtítulos** del catálogo visual. Presets: **1 · muelle**, **2 · pecho**, **3 · repartidos**, **4 · bloque** (código en `editor/subtitulos/`).
+Se configuran en la pestaña **Subtítulos** del catálogo visual. Presets: **1 · muelle**, **2 · pecho**, **3 · repartidos**, **4 · bloque**, **5 · gris a blanco**, **6 · letra a letra**, **7 · karaoke**, **8 · clave en color**, **9 · pop**, **10 · editorial** (código en `editor/subtitulos/`).
