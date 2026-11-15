@@ -1,44 +1,545 @@
 [
-["movil-cifras-coral","vender","aprobado","Vender tu servicio a cámara: móvil con pantalla de bloqueo, 100 muñecos, cifra blanca + cursiva coral, subtítulos letra a letra"],
-["zambullida-epica","sin-grabar","aprobado","Anuncio épico con voz en off a 60 fps: la cámara se mete dentro de los objetos y la escena siguiente se abre desde dentro"],
-["ranking-circulos","listas","aprobado","Top 5 / del 1 al 10: cada puesto con su foto en círculo que vuela a su sitio, el 1 en dorado. El favorito"],
-["errores-detras","listas","aprobado","Lista de errores con un gráfico propio por punto DETRÁS del cuerpo y cierre con la ficha de Google"],
-["mal-bien-detras","mal-bien","aprobado","Esto está mal / esto está bien: MAL rojo y BIEN verde gigantes detrás del cuerpo"],
-["tiro-hecho-horizontal","horizontal","pruebas","Vídeos horizontales 16:9 (YouTube, VSL, lecciones): texto gigante detrás, escenas de interfaz"],
-["dos-barras","si-quieres","aprobado","«Si quieres X, haz Y» con cajas arriba: SI QUIERES en rojo, HAZ ESTO en verde"],
-["pesas-que-se-encienden","mal-bien","aprobado","Lo malo, lo bueno y lo perfecto con objetos reales que se iluminan"],
-["marcador-circulos","mal-bien","aprobado","Mitos funciona / no funciona: marcador arriba con fotos en círculo"],
-["analisis-tecnica","tecnica","aprobado","Corregir un ejercicio: congelado con líneas sobre el cuerpo, ✓/✕"],
-["analisis-repeticion","tecnica","aprobado","Manera incorrecta / correcta, ejercicio a ejercicio"],
-["motion-referencias","consejos","aprobado","Pasos y cifras a cámara: una técnica de After Effects distinta por idea (pantalla rota, cursor, móviles, cartel, rueda, órbita, encuesta)"],
-["tabla-barras-vuelan","si-quieres","aprobado","«Si quieres X, haz Y» en tabla bajo la cara: barras verdes y rojas que salen volando y dejan el texto letra a letra"],
-["lima-apps-orbitando","consejos","referencia","Persona con micro y fondo gris; redes, marketing y tecnología con apps orbitando"],
-["terracota-pantalla-partida","podcast","referencia","Entrevista o podcast largo en plano cálido; salud, bienestar, producto"],
-["cristal-azul-exterior","consejos","referencia","Persona a cámara en exterior; seguros, finanzas, servicios, inmobiliaria"],
-["entrevista-serif-naranja","podcast","referencia","Entrevista en oficina luminosa, dos personas; negocio y emprendimiento"],
-["escenas-violeta","consejos","referencia","Opinión o consejo en estudio con fondo azul o neutro"],
-["widgets-cristal-dorado","vender","referencia","Negocio local a cámara con fondo oscuro: widgets de cristal, reseñas"],
-["podcast-chips-coral","podcast","referencia","Podcast con plano oscuro: conceptos y definiciones en chips"],
-["collage-retro-podcast","podcast","referencia","Podcast con collage retro: historias, mentalidad, emprendimiento"],
-["texto-detras-gym","tecnica","aprobado","Ejercicio con el error y la técnica correcta, texto detrás de la persona"],
-["lista-contador","listas","aprobado","Pasos o errores numerados con un contador ligero encima del cuerpo"],
-["boutique-medidor","mal-bien","pruebas","Valoraciones con medidor elegante para centros boutique"],
-["escenas-creador","sin-grabar","pruebas","Interfaces y texto gigante para enseñar un curso o infoproducto"],
-["aviso-tipografico","avisos","referencia","Avisos sin grabación: horario, festivos, vacaciones, promociones"],
-["dopamina-real-3d","sin-grabar","aprobado","Enseñar una herramienta o app con mucha energía: real y 3D alternos"],
-["editorial-contraste","consejos","referencia","Letra fina con palabra en negrita de color: autoridad y elegancia"],
-["elegante-editorial","consejos","referencia","Autoridad a cámara con tipografía editorial"],
-["explicativo-3d-continuo","sin-grabar","aprobado","Explicativo animado en 3D con voz en off, sin cortes"],
-["gym-documental","tecnica","referencia","Documental de gimnasio: datos y músculo, estilo divulgación"],
-["historia-dibujada","historia","aprobado","Contar una historia o una «ley» con dibujos a tinta mientras hablas"],
-["minimal-palabra","consejos","referencia","Una palabra suelta grande en cada idea, nada más"],
-["neon-glow","consejos","referencia","Palabras con brillo de neón sobre fondo oscuro"],
-["palabras-gigantes-detras","consejos","aprobado","Palabras gigantes detrás de tu silueta: opinión y marca personal"],
-["panel-que-baja","consejos","aprobado","Opinión con un panel negro que baja desde arriba"],
-["pizarra-marcador","vender","aprobado","Tú contra la competencia en una pizarra con marcador «vs»"],
-["podcast-pregunta","podcast","pruebas","Dos personas en una mesa con micros, pregunta y respuesta"],
-["texto-detras","avisos","referencia","Texto detrás del sujeto para enseñar un local o un inmueble"],
-["visita-rotulos-suelo","avisos","aprobado","Recorrido por un local o un piso con rótulos 3D en el suelo"],
-["marcador-funciona","mal-bien","aprobado","Mitos «funciona / no funciona»: marcador arriba que se llena con fotos"],
-["cine-tipografico","historia","referencia","Reels «épicos»: localizaciones cada 2-4 s y frases alrededor de la cara"]
+ {
+  "n": "movil-cifras-coral",
+  "g": "vender",
+  "est": "aprobado",
+  "para": "Vender tu servicio a cámara: móvil con pantalla de bloqueo, 100 muñecos, cifra blanca + cursiva coral, subtítulos letra a letra",
+  "pub": [
+   "marca",
+   "negocios"
+  ]
+ },
+ {
+  "n": "zambullida-epica",
+  "g": "sin-grabar",
+  "est": "aprobado",
+  "para": "Anuncio épico con voz en off a 60 fps: la cámara se mete dentro de los objetos y la escena siguiente se abre desde dentro",
+  "pub": [
+   "negocios",
+   "marca"
+  ]
+ },
+ {
+  "n": "ranking-circulos",
+  "g": "listas",
+  "est": "aprobado",
+  "para": "Top 5 / del 1 al 10: cada puesto con su foto en círculo que vuela a su sitio, el 1 en dorado. El favorito",
+  "pub": [
+   "entrenadores"
+  ]
+ },
+ {
+  "n": "errores-detras",
+  "g": "listas",
+  "est": "aprobado",
+  "para": "Lista de errores con un gráfico propio por punto DETRÁS del cuerpo y cierre con la ficha de Google",
+  "pub": [
+   "entrenadores",
+   "negocios"
+  ]
+ },
+ {
+  "n": "mal-bien-detras",
+  "g": "mal-bien",
+  "est": "aprobado",
+  "para": "Esto está mal / esto está bien: MAL rojo y BIEN verde gigantes detrás del cuerpo",
+  "pub": [
+   "entrenadores"
+  ]
+ },
+ {
+  "n": "tiro-hecho-horizontal",
+  "g": "horizontal",
+  "est": "pruebas",
+  "para": "Vídeos horizontales 16:9 (YouTube, VSL, lecciones): texto gigante detrás, escenas de interfaz",
+  "pub": [
+   "entrenadores",
+   "marca"
+  ],
+  "demo": {
+   "t": "horizontal",
+   "bg": "oscuro"
+  }
+ },
+ {
+  "n": "dos-barras",
+  "g": "si-quieres",
+  "est": "aprobado",
+  "para": "«Si quieres X, haz Y» con cajas arriba: SI QUIERES en rojo, HAZ ESTO en verde",
+  "pub": [
+   "entrenadores",
+   "marca"
+  ]
+ },
+ {
+  "n": "pesas-que-se-encienden",
+  "g": "mal-bien",
+  "est": "aprobado",
+  "para": "Lo malo, lo bueno y lo perfecto con objetos reales que se iluminan",
+  "pub": [
+   "entrenadores"
+  ]
+ },
+ {
+  "n": "marcador-circulos",
+  "g": "mal-bien",
+  "est": "aprobado",
+  "para": "Mitos funciona / no funciona: marcador arriba con fotos en círculo",
+  "pub": [
+   "entrenadores"
+  ]
+ },
+ {
+  "n": "analisis-tecnica",
+  "g": "tecnica",
+  "est": "aprobado",
+  "para": "Corregir un ejercicio: congelado con líneas sobre el cuerpo, ✓/✕",
+  "pub": [
+   "entrenadores"
+  ]
+ },
+ {
+  "n": "analisis-repeticion",
+  "g": "tecnica",
+  "est": "aprobado",
+  "para": "Manera incorrecta / correcta, ejercicio a ejercicio",
+  "pub": [
+   "entrenadores"
+  ]
+ },
+ {
+  "n": "motion-referencias",
+  "g": "consejos",
+  "est": "aprobado",
+  "para": "Pasos y cifras a cámara: una técnica de After Effects distinta por idea (pantalla rota, cursor, móviles, cartel, rueda, órbita, encuesta)",
+  "pub": [
+   "marca",
+   "negocios",
+   "entrenadores"
+  ]
+ },
+ {
+  "n": "tabla-barras-vuelan",
+  "g": "si-quieres",
+  "est": "aprobado",
+  "para": "«Si quieres X, haz Y» en tabla bajo la cara: barras verdes y rojas que salen volando y dejan el texto letra a letra",
+  "pub": [
+   "marca",
+   "entrenadores",
+   "negocios"
+  ]
+ },
+ {
+  "n": "lima-apps-orbitando",
+  "g": "consejos",
+  "est": "referencia",
+  "para": "Persona con micro y fondo gris; redes, marketing y tecnología con apps orbitando",
+  "pub": [
+   "marca"
+  ],
+  "demo": {
+   "t": "orbita",
+   "bg": "sala",
+   "c": "#c6f432"
+  }
+ },
+ {
+  "n": "terracota-pantalla-partida",
+  "g": "podcast",
+  "est": "referencia",
+  "para": "Entrevista o podcast largo en plano cálido; salud, bienestar, producto",
+  "pub": [
+   "podcast",
+   "negocios"
+  ],
+  "demo": {
+   "t": "split",
+   "bg": "calido",
+   "c": "#c26a4a"
+  }
+ },
+ {
+  "n": "cristal-azul-exterior",
+  "g": "consejos",
+  "est": "referencia",
+  "para": "Persona a cámara en exterior; seguros, finanzas, servicios, inmobiliaria",
+  "pub": [
+   "negocios",
+   "marca"
+  ],
+  "demo": {
+   "t": "cristal",
+   "bg": "azul"
+  }
+ },
+ {
+  "n": "entrevista-serif-naranja",
+  "g": "podcast",
+  "est": "referencia",
+  "para": "Entrevista en oficina luminosa, dos personas; negocio y emprendimiento",
+  "pub": [
+   "podcast",
+   "marca"
+  ],
+  "demo": {
+   "t": "serif",
+   "bg": "claro",
+   "sil": "#6b6460",
+   "c": "#ff8a3d"
+  }
+ },
+ {
+  "n": "escenas-violeta",
+  "g": "consejos",
+  "est": "referencia",
+  "para": "Opinión o consejo en estudio con fondo azul o neutro",
+  "pub": [
+   "marca"
+  ],
+  "demo": {
+   "t": "chips",
+   "bg": "violeta",
+   "c": "#8b5cf6"
+  }
+ },
+ {
+  "n": "widgets-cristal-dorado",
+  "g": "vender",
+  "est": "referencia",
+  "para": "Negocio local a cámara con fondo oscuro: widgets de cristal, reseñas",
+  "pub": [
+   "negocios"
+  ],
+  "demo": {
+   "t": "widgets",
+   "bg": "oscuro",
+   "sil": "#4a3a26"
+  }
+ },
+ {
+  "n": "podcast-chips-coral",
+  "g": "podcast",
+  "est": "referencia",
+  "para": "Podcast con plano oscuro: conceptos y definiciones en chips",
+  "pub": [
+   "podcast"
+  ],
+  "demo": {
+   "t": "chips",
+   "bg": "oscuro",
+   "c": "#ff6b5a"
+  }
+ },
+ {
+  "n": "collage-retro-podcast",
+  "g": "podcast",
+  "est": "referencia",
+  "para": "Podcast con collage retro: historias, mentalidad, emprendimiento",
+  "pub": [
+   "podcast",
+   "marca"
+  ],
+  "demo": {
+   "t": "collage",
+   "bg": "calido"
+  }
+ },
+ {
+  "n": "texto-detras-gym",
+  "g": "tecnica",
+  "est": "aprobado",
+  "para": "Ejercicio con el error y la técnica correcta, texto detrás de la persona",
+  "pub": [
+   "entrenadores"
+  ],
+  "demo": {
+   "t": "detras",
+   "bg": "gym",
+   "y": 24,
+   "c": "#fff",
+   "txt": "FUERZA"
+  }
+ },
+ {
+  "n": "lista-contador",
+  "g": "listas",
+  "est": "aprobado",
+  "para": "Pasos o errores numerados con un contador ligero encima del cuerpo",
+  "pub": [
+   "entrenadores"
+  ],
+  "demo": {
+   "t": "lista",
+   "bg": "gym"
+  }
+ },
+ {
+  "n": "boutique-medidor",
+  "g": "mal-bien",
+  "est": "pruebas",
+  "para": "Valoraciones con medidor elegante para centros boutique",
+  "pub": [
+   "entrenadores"
+  ],
+  "demo": {
+   "t": "medidor",
+   "bg": "gym"
+  }
+ },
+ {
+  "n": "escenas-creador",
+  "g": "sin-grabar",
+  "est": "pruebas",
+  "para": "Interfaces y texto gigante para enseñar un curso o infoproducto",
+  "pub": [
+   "marca",
+   "entrenadores"
+  ],
+  "demo": {
+   "t": "interfaz",
+   "bg": "oscuro"
+  }
+ },
+ {
+  "n": "aviso-tipografico",
+  "g": "avisos",
+  "est": "referencia",
+  "para": "Avisos sin grabación: horario, festivos, vacaciones, promociones",
+  "pub": [
+   "negocios"
+  ],
+  "demo": {
+   "t": "aviso",
+   "bg": "calido"
+  }
+ },
+ {
+  "n": "dopamina-real-3d",
+  "g": "sin-grabar",
+  "est": "aprobado",
+  "para": "Enseñar una herramienta o app con mucha energía: real y 3D alternos",
+  "pub": [
+   "marca",
+   "negocios"
+  ],
+  "demo": {
+   "t": "dopamina",
+   "bg": "oscuro"
+  }
+ },
+ {
+  "n": "editorial-contraste",
+  "g": "consejos",
+  "est": "referencia",
+  "para": "Letra fina con palabra en negrita de color: autoridad y elegancia",
+  "pub": [
+   "marca",
+   "entrenadores"
+  ],
+  "demo": {
+   "t": "editorial",
+   "bg": "oscuro",
+   "c": "#c6f432"
+  }
+ },
+ {
+  "n": "elegante-editorial",
+  "g": "consejos",
+  "est": "referencia",
+  "para": "Autoridad a cámara con tipografía editorial",
+  "pub": [
+   "marca"
+  ],
+  "demo": {
+   "t": "editorial",
+   "bg": "sala",
+   "c": "#ffd60a",
+   "f": "\"Playfair Display\",Georgia"
+  }
+ },
+ {
+  "n": "explicativo-3d-continuo",
+  "g": "sin-grabar",
+  "est": "aprobado",
+  "para": "Explicativo animado en 3D con voz en off, sin cortes",
+  "pub": [
+   "marca",
+   "negocios"
+  ],
+  "demo": {
+   "t": "objetos3d",
+   "bg": "noche"
+  }
+ },
+ {
+  "n": "gym-documental",
+  "g": "tecnica",
+  "est": "referencia",
+  "para": "Documental de gimnasio: datos y músculo, estilo divulgación",
+  "pub": [
+   "entrenadores"
+  ],
+  "demo": {
+   "t": "documental",
+   "bg": "gym"
+  }
+ },
+ {
+  "n": "historia-dibujada",
+  "g": "historia",
+  "est": "aprobado",
+  "para": "Contar una historia o una «ley» con dibujos a tinta mientras hablas",
+  "pub": [
+   "marca",
+   "entrenadores"
+  ],
+  "demo": {
+   "t": "dibujo",
+   "bg": "oscuro"
+  }
+ },
+ {
+  "n": "minimal-palabra",
+  "g": "consejos",
+  "est": "referencia",
+  "para": "Una palabra suelta grande en cada idea, nada más",
+  "pub": [
+   "marca",
+   "entrenadores"
+  ],
+  "demo": {
+   "t": "palabra",
+   "bg": "sala",
+   "t2": 0
+  }
+ },
+ {
+  "n": "neon-glow",
+  "g": "consejos",
+  "est": "referencia",
+  "para": "Palabras con brillo de neón sobre fondo oscuro",
+  "pub": [
+   "marca",
+   "entrenadores"
+  ],
+  "demo": {
+   "t": "neon",
+   "bg": "oscuro"
+  }
+ },
+ {
+  "n": "palabras-gigantes-detras",
+  "g": "consejos",
+  "est": "aprobado",
+  "para": "Palabras gigantes detrás de tu silueta: opinión y marca personal",
+  "pub": [
+   "marca",
+   "entrenadores"
+  ],
+  "demo": {
+   "t": "detras",
+   "bg": "sala",
+   "c": "#ffd60a",
+   "txt": "CLIENTES"
+  }
+ },
+ {
+  "n": "panel-que-baja",
+  "g": "consejos",
+  "est": "aprobado",
+  "para": "Opinión con un panel negro que baja desde arriba",
+  "pub": [
+   "marca",
+   "negocios"
+  ],
+  "demo": {
+   "t": "panel",
+   "bg": "sala"
+  }
+ },
+ {
+  "n": "pizarra-marcador",
+  "g": "vender",
+  "est": "aprobado",
+  "para": "Tú contra la competencia en una pizarra con marcador «vs»",
+  "pub": [
+   "negocios",
+   "marca"
+  ],
+  "demo": {
+   "t": "versus",
+   "bg": "sala"
+  }
+ },
+ {
+  "n": "podcast-pregunta",
+  "g": "podcast",
+  "est": "pruebas",
+  "para": "Dos personas en una mesa con micros, pregunta y respuesta",
+  "pub": [
+   "podcast"
+  ],
+  "demo": {
+   "t": "podcast",
+   "bg": "calido"
+  }
+ },
+ {
+  "n": "texto-detras",
+  "g": "avisos",
+  "est": "referencia",
+  "para": "Texto detrás del sujeto para enseñar un local o un inmueble",
+  "pub": [
+   "negocios"
+  ],
+  "demo": {
+   "t": "detras",
+   "bg": "claro",
+   "sil": "#7a746c",
+   "c": "#1d1d1f",
+   "sub": "con terraza",
+   "txt": "ÁTICO"
+  }
+ },
+ {
+  "n": "visita-rotulos-suelo",
+  "g": "avisos",
+  "est": "aprobado",
+  "para": "Recorrido por un local o un piso con rótulos 3D en el suelo",
+  "pub": [
+   "negocios"
+  ],
+  "demo": {
+   "t": "suelo",
+   "bg": "claro",
+   "sil": "#7a746c"
+  }
+ },
+ {
+  "n": "marcador-funciona",
+  "g": "mal-bien",
+  "est": "aprobado",
+  "para": "Mitos «funciona / no funciona»: marcador arriba que se llena con fotos",
+  "pub": [
+   "entrenadores"
+  ],
+  "demo": {
+   "t": "marcador",
+   "bg": "gym"
+  }
+ },
+ {
+  "n": "cine-tipografico",
+  "g": "historia",
+  "est": "referencia",
+  "para": "Reels «épicos»: localizaciones cada 2-4 s y frases alrededor de la cara",
+  "pub": [
+   "marca",
+   "entrenadores"
+  ],
+  "demo": {
+   "t": "cine",
+   "bg": "noche"
+  }
+ }
 ]

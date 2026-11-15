@@ -1,0 +1,58 @@
+[
+ {
+  "n": "1 · muelle",
+  "est": "aprobado",
+  "anim": "muelle",
+  "fuente": "\"Helvetica Neue\",Helvetica,Arial",
+  "caso": "normal",
+  "tam": 22,
+  "track": -3,
+  "pal": 3,
+  "col": "#ffffff",
+  "acc": "#ffffff",
+  "pos": "abajo",
+  "codigo": "editor/subtitulos/01-muelle/"
+ },
+ {
+  "n": "2 · pecho",
+  "est": "aprobado",
+  "anim": "mascara",
+  "fuente": "\"Helvetica Neue\",Helvetica,Arial",
+  "caso": "min",
+  "tam": 30,
+  "track": -5,
+  "pal": 3,
+  "col": "#ffffff",
+  "acc": "#ffffff",
+  "pos": "pecho",
+  "codigo": "editor/subtitulos/02-pecho/"
+ },
+ {
+  "n": "3 · repartidos",
+  "est": "aprobado",
+  "anim": "repartidos",
+  "fuente": "\"Helvetica Neue Condensed\",\"Arial Narrow\",Anton",
+  "caso": "normal",
+  "tam": 32,
+  "track": -2,
+  "pal": 1,
+  "col": "#ffffff",
+  "acc": "#ffffff",
+  "pos": "pecho",
+  "codigo": "editor/subtitulos/03-repartidos/"
+ },
+ {
+  "n": "4 · bloque",
+  "est": "aprobado",
+  "anim": "bloque",
+  "fuente": "\"Helvetica Neue\",Helvetica,Arial",
+  "caso": "normal",
+  "tam": 20,
+  "track": -4,
+  "pal": 3,
+  "col": "#ffffff",
+  "acc": "#ffffff",
+  "pos": "pecho",
+  "codigo": "editor/subtitulos/04-bloque/"
+ }
+]

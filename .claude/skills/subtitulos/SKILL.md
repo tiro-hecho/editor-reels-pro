@@ -4,6 +4,7 @@ description: Enseña los estilos de subtítulos con su muestra y deja elegir uno
 ---
 # Subtítulos
 
+0. Si quiere verlos moverse o configurarlos, ábrele `editor/catalogo/catalogo.html`, pestaña **Subtítulos** (Mac: `open`, Windows: `start`): elige preset, animación, letra, tamaño, color y sitio, y copia el pedido.
 1. Enseña la `muestra.png` de cada preset de `editor/subtitulos/` (01-muelle, 02-pecho, 03-repartidos, 04-bloque) con una línea de cuándo usarlo (`subtitulos/LEEME.md`).
 2. Cuando elija, pregúntale **una sola cosa**: «¿te vale la letra Inter Bold blanca (como la Helvetica) o quieres otra?». Si quiere otra, enséñale 3 de `editor/assets/fuentes/` (o la suya en .ttf) pintadas sobre un fotograma de su propio vídeo y que elija.
 3. Guarda la elección (preset, fuente, tamaño, color) en `mi-edicion/marca.md`: a partir de ahí todos sus vídeos la usan.
