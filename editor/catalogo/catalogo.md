@@ -2,6 +2,8 @@
 
 ## Formatos completos (aprobados en vídeos reales, con captura)
 
+¿No sabes cuál? Mira `INDICE-POR-GUION.md`: elige por lo que vas a contar. Cada receta sigue `PLANTILLA-FICHA.md`.
+
 Cada captura lleva su número arriba: pide el estilo por su número («hazlo con el estilo 3»).
 
 Motor listo para Mac y Windows: `ranking-circulos`, `dos-barras`, `errores-detras`, `mal-bien-detras`, `marcador-funciona`. El resto trae un motor de referencia que Claude adapta.
@@ -52,5 +54,5 @@ Motor listo para Mac y Windows: `ranking-circulos`, `dos-barras`, `errores-detra
 26. `texto-detras`
 27. `visita-rotulos-suelo`
 
-| 28 | `marcador-funciona` | Mitos «funciona / no funciona»: marcador arriba que se llena con fotos (aprobado 24/10) |
-| 29 | `cine-tipografico` | Referencias «épicas» de creadores: localizaciones cada 2-4 s, B-roll macro, frases palabra a palabra alrededor de la cara (sin montar aún, 26/10) |
+28. `marcador-funciona`: mitos «funciona / no funciona», marcador arriba que se llena con fotos (aprobado)
+29. `cine-tipografico`: referencias «épicas», localizaciones cada 2-4 s y frases alrededor de la cara (sin montar aún)
