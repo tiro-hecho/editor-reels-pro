@@ -11,7 +11,7 @@ Mete tus vídeos en bruto y Claude te los devuelve editados como los de un edito
 5. Cuando termine, abre un **chat nuevo** en la misma carpeta y escribe **/empezar**. Claude instala lo que falte (en Windows puede pedirte que cierres y abras Claude una vez) y te pregunta por tu marca.
 
 ## Usar
-- Mete tus vídeos en `mi-edicion/brutos` y escribe **/estilos** para elegir cómo quieres que queden.
+- Mete tus vídeos en `mi-edicion/brutos` y escribe **/estilos**: te pregunta qué vas a contar y te enseña los estilos que encajan. Para verlos todos, abre `editor/catalogo/catalogo.html`.
 - Pide cambios con tus palabras: «quita el silencio del segundo 5», «/musica otra canción», «/subtitulos más grandes».
 - Cuando te guste: «me gusta, guárdalo».
 - Para tener los estilos nuevos: **/actualizar**.

@@ -14,4 +14,4 @@ Para: <qué guion y qué vídeo: a cámara o voz en off, vertical u horizontal, 
 ## Qué NO copiar       (lo rechazado al crearlo)
 ```
 
-Al añadir un estilo: receta + motor (o «sin motor») + captura con las caras difuminadas + fila en `catalogo.md` + línea en `INDICE-POR-GUION.md`.
+Al añadir un estilo: receta + motor (o «sin motor») + captura con las caras difuminadas + fila en `editor/catalogo/estilos.json` + línea en `INDICE-POR-GUION.md`, y `python editor/catalogo/generar.py` (rehace catalogo.md y catalogo.html).
