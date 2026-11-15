@@ -16,7 +16,8 @@ estilos = []
 for i, e in enumerate(E, 1):
     n = e['n']
     cap = f'capturas/{n}.jpg' if os.path.exists(os.path.join(AQUI, 'capturas', n + '.jpg')) else None
-    estilos.append(dict(e, num=i, tira=cap, receta=f'editor/estilos/{n}.md',
+    mu = f'muestras/{n}.mp4' if os.path.exists(os.path.join(AQUI, 'muestras', n + '.mp4')) else None
+    estilos.append(dict(e, num=i, tira=cap, muestra=mu, receta=f'editor/estilos/{n}.md',
                         motor=os.path.isdir(os.path.join(AQUI, '..', 'motor', n))))
 
 md = ['# Catálogo de estilos', '',

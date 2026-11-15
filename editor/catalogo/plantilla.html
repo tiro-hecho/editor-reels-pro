@@ -169,6 +169,7 @@ function demo(e){const m=e.demo||{t:'palabra'};const f=DEMOS[m.t]||DEMOS.palabra
  return `<div class="dm" style="background:#222 url('${foto}') center/cover"><div class="z1" style="position:absolute;inset:0;background:${TINTE[bg]||'transparent'}"></div><div class="z1" style="position:absolute;inset:45% 0 0 0;background:linear-gradient(transparent,rgba(0,0,0,.45))"></div>${f(m)}</div>`}
 function portada(e){return portada0(e)+(e.video?`<video class="vid" data-src="${esc(e.video)}" muted loop playsinline preload="none"></video><span class="play">▶ vídeo real</span>`:'')}
 function portada0(e){
+ if(e.muestra&&!e.tira&&!e.img)return `<div class="dm foto"><video class="mu" src="${esc(e.muestra)}" muted loop playsinline autoplay preload="metadata" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video><span class="play" style="z-index:7">muestra en vídeo</span></div>`;
  if(e.tira)return `<div class="dm tira">${[0,1,2].map(i=>`<img src="${e.tira}" style="object-fit:none" alt="">`).join('')}</div>`;
  if(e.img)return `<div class="dm foto"><img src="${esc(e.img)}" alt="" loading="lazy" onerror="this.parentNode.outerHTML=demoDe(${e.num})"></div>`;
  return demo(e)}
@@ -260,5 +261,7 @@ function bloque(sb,b,st,i0){sb.style.cssText=st;const clave=k=>['clientes','trab
  if(live)sb.querySelectorAll('.w').forEach((w,k)=>TM.push(setTimeout(()=>w.classList.add('lit'),k*330)))}
 document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));const s=b.dataset.tab==='subs';$('#vE').hidden=s;$('#vS').hidden=!s;$('#filE').hidden=s;if(s&&!$('#sb'))pintaS();else if(s)arranca()});
 window.addEventListener('resize',()=>{if(!$('#vS').hidden)arranca()});
+const IO=new IntersectionObserver(es=>es.forEach(x=>{const v=x.target;if(x.isIntersecting)v.play().catch(()=>{});else v.pause()}),{rootMargin:'200px'});
+new MutationObserver(()=>document.querySelectorAll('video.mu:not([data-io])').forEach(v=>{v.dataset.io=1;IO.observe(v)})).observe(document.body,{childList:true,subtree:true});
 pinta();
 </script></body></html>
