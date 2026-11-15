@@ -176,6 +176,7 @@ function chips(id,k,obj){const el=$(id);el.innerHTML=`<button class="chip on" da
  el.onclick=ev=>{const b=ev.target.closest('.chip');if(!b)return;F[k]=b.dataset.v;el.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b));pinta()}}
 chips('#cP','p',P);chips('#cG','g',G);chips('#cE','e',E);
 if(D.clientes&&D.clientes.length)chips('#cC','c',Object.fromEntries(D.clientes.map(c=>[c,c])));
+if(D.agrupar)$('#agr').value=D.agrupar;
 $('#q').oninput=ev=>{F.q=ev.target.value.toLowerCase();pinta()};$('#ord').onchange=pinta;$('#agr').onchange=pinta;
 const RE={aprobado:0,pruebas:1,referencia:2,rechazado:3};
 function score(e){return (RE[e.est]??4)*10+((e.pub||[]).includes(F.p||PUB)?0:5)}
@@ -187,7 +188,7 @@ function pinta(){
  const ag=$('#agr').value;let html='';
  if(!ag)html=`<div class="grid">${L.map(tarjeta).join('')}</div>`;
  else{const grupos=new Map();L.forEach(e=>{const ks=ag==='p'?((e.pub&&e.pub.length)?e.pub:['otros']):[ag==='g'?e.g:(e.cliente||'Sin cliente')];ks.forEach(k=>{if(!grupos.has(k))grupos.set(k,[]);grupos.get(k).push(e)})});
-  let ord=[...grupos.keys()];if(ag==='p'){ord.sort((a,b)=>(a===PUB?-1:b===PUB?1:0))}if(ag==='g')ord.sort((a,b)=>Object.keys(G).indexOf(a)-Object.keys(G).indexOf(b));
+  let ord=[...grupos.keys()];if(ag==='p'){ord.sort((a,b)=>(a===PUB?-1:b===PUB?1:0))}if(ag==='g')ord.sort((a,b)=>Object.keys(G).indexOf(a)-Object.keys(G).indexOf(b));if(ag==='c')ord.sort((a,b)=>D.clientes.indexOf(a)-D.clientes.indexOf(b));
   html=ord.map(k=>`<section class="sec"><h2>${esc(ag==='g'?G[k]||k:ag==='p'?P[k]||'Otros':k)} <span>${grupos.get(k).length}</span></h2><div class="grid">${grupos.get(k).map(tarjeta).join('')}</div></section>`).join('')}
  $('#vE').innerHTML=html||'<p>No hay estilos con esos filtros.</p>';montaTiras($('#vE'));rebota()}
 $('#vE').onclick=ev=>{const c=ev.target.closest('.card');if(c)ficha(+c.dataset.num)};
