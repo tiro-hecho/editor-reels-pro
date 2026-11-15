@@ -32,6 +32,7 @@ main{max-width:1400px;margin:0 auto;padding:16px}
 .cb{padding:10px 12px 12px;display:flex;flex-direction:column;gap:4px}.cb h3{margin:0;font-size:14px;line-height:1.25}.cb p{margin:0;font-size:12.5px;color:var(--s);line-height:1.35}
 .tag{font-size:11px;color:var(--s)}.tag b{color:var(--t)}
 /* portadas: tira de 3 fotogramas */
+.vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:8;opacity:0;transition:opacity .3s;background:#000}.card:hover .vid.ok{opacity:1}.play{position:absolute;bottom:8px;left:8px;z-index:9;font-size:10px;font-weight:800;background:rgba(0,0,0,.65);color:#fff;border-radius:999px;padding:3px 8px}
 .tira img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s}.tira img.on{opacity:1}
 .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:0 50%;animation:pan 14s ease-in-out infinite alternate}@keyframes pan{from{object-position:0 50%}to{object-position:100% 50%}}
 @keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.12) translateY(-2%)}}
@@ -158,7 +159,8 @@ function demo(e){const m=e.demo||{t:'palabra'};const f=DEMOS[m.t]||DEMOS.palabra
  const foto=(D.fondos||[])[e.num%Math.max(1,(D.fondos||[]).length)];
  if(!foto)return `<div class="dm" style="background:${BG[bg]}">${SIL(m.sil)}${f(m)}</div>`;
  return `<div class="dm" style="background:#222 url('${foto}') center/cover"><div class="z1" style="position:absolute;inset:0;background:${TINTE[bg]||'transparent'}"></div><div class="z1" style="position:absolute;inset:45% 0 0 0;background:linear-gradient(transparent,rgba(0,0,0,.45))"></div>${f(m)}</div>`}
-function portada(e){
+function portada(e){return portada0(e)+(e.video?`<video class="vid" data-src="${esc(e.video)}" muted loop playsinline preload="none"></video><span class="play">▶ vídeo real</span>`:'')}
+function portada0(e){
  if(e.tira)return `<div class="dm tira">${[0,1,2].map(i=>`<img src="${e.tira}" style="object-fit:none" alt="">`).join('')}</div>`;
  if(e.img)return `<div class="dm foto"><img src="${esc(e.img)}" alt="" loading="lazy" onerror="this.parentNode.outerHTML=demoDe(${e.num})"></div>`;
  return demo(e)}
@@ -191,12 +193,15 @@ function pinta(){
   let ord=[...grupos.keys()];if(ag==='p'){ord.sort((a,b)=>(a===PUB?-1:b===PUB?1:0))}if(ag==='g')ord.sort((a,b)=>Object.keys(G).indexOf(a)-Object.keys(G).indexOf(b));if(ag==='c')ord.sort((a,b)=>D.clientes.indexOf(a)-D.clientes.indexOf(b));
   html=ord.map(k=>`<section class="sec"><h2>${esc(ag==='g'?G[k]||k:ag==='p'?P[k]||'Otros':k)} <span>${grupos.get(k).length}</span></h2><div class="grid">${grupos.get(k).map(tarjeta).join('')}</div></section>`).join('')}
  $('#vE').innerHTML=html||'<p>No hay estilos con esos filtros.</p>';montaTiras($('#vE'));rebota()}
+$('#vE').addEventListener('mouseover',ev=>{const c=ev.target.closest('.card');const v=c&&c.querySelector('.vid');if(!v||v.dataset.on)return;v.dataset.on=1;v.src=v.dataset.src;v.oncanplay=()=>v.classList.add('ok');v.play().catch(()=>{});c.addEventListener('mouseleave',()=>{v.pause()},{once:false})});
+$('#vE').addEventListener('mouseout',ev=>{const c=ev.target.closest('.card');const v=c&&c.querySelector('.vid');if(v&&!c.contains(ev.relatedTarget))v.pause()});
+$('#vE').addEventListener('mouseover',ev=>{const c=ev.target.closest('.card');const v=c&&c.querySelector('.vid.ok');if(v&&v.paused)v.play().catch(()=>{})});
 $('#vE').onclick=ev=>{const c=ev.target.closest('.card');if(c)ficha(+c.dataset.num)};
 function ficha(n){const e=D.estilos.find(x=>x.num===n);const dl=$('#dlg');
  dl.innerHTML=`<div class="fi" style="position:relative"><div class="ph"><span class="num">${e.num}</span><span class="est ${e.est}">${E[e.est]}</span>${portada(e)}</div>
- <div class="tx"><button class="x" onclick="dlg.close()">×</button><h2>${esc(e.n)}</h2><p>${esc(e.para)}</p>
+ <div class="tx"><button class="x" onclick="dlg.close()">×</button><h2>${esc(e.n)}</h2><p>${esc(e.para)}</p>${e.aspecto?`<p class="tag" style="font-size:13.5px"><b>Cómo se ve:</b> ${esc(e.aspecto)}</p>`:''}
  <div class="kv"><b>Sirve para</b><span>${esc(G[e.g]||'')}</span><b>Para quién</b><span>${(e.pub||[]).map(p=>P[p]).join(', ')||'—'}</span>${e.cliente?`<b>Cliente</b><span>${esc(e.cliente)}</span>`:''}<b>Estado</b><span>${E[e.est]}${e.frase_est?` · ${esc(e.frase_est)}`:''}</span><b>Motor</b><span>${e.motor?'listo':'Claude lo programa con la receta'}</span><b>Receta</b><span><code>${esc(e.receta||'')}</code></span></div>
- ${e.tira||e.img?`<div class="big"><img src="${esc(e.tira||e.img)}" alt="" onclick="window.open(this.src)"></div>`:'<p class="tag">Sin captura de un vídeo real todavía: la animación es una muestra de cómo se ve.</p>'}
+ ${e.video?`<video class="big" src="${esc(e.video)}" controls autoplay muted loop playsinline style="border-radius:12px;max-height:60vh;background:#000"></video><p class="tag">Vídeo: <code>${esc(e.video)}</code></p>`:''}${e.tira||e.img?`<div class="big"><img src="${esc(e.tira||e.img)}" alt="" onclick="window.open(this.src)"></div>`:'<p class="tag">Sin captura de un vídeo real todavía: la animación es una muestra de cómo se ve.</p>'}
  <div class="cta"><button class="btn" id="cp">Copiar «${esc(frase(e))}»</button></div></div></div>`;
  montaTiras(dl);dl.showModal();rebota();$('#cp').onclick=ev=>{try{navigator.clipboard.writeText(frase(e))}catch(x){}ev.target.textContent='Copiado ✓'}}
 $('#dlg').onclick=ev=>{if(ev.target.id==='dlg')ev.target.close()};
