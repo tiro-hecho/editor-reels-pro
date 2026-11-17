@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="es"><meta charset="utf-8"><title>Generar iconos 3D</title>
+<body style="font-family:system-ui;padding:24px;background:#faf6ee">
+<h1>Iconos del estilo «iconos-3d-ambar»</h1>
+<p>Abre esta página en Chrome y pulsa el botón: se descarga <b>emo_hoja.png</b> con los emojis de tu sistema a 440 px.
+Muévela a esta carpeta (<code>editor/motor/iconos-3d-ambar/iconos/</code>) y ejecuta <code>python corta.py</code>.
+En Mac salen los emojis 3D de Apple (los que se usaron en el ejemplo); en Windows salen los de Microsoft, más planos.
+Son para tus vídeos: no los repartas sueltos.</p>
+<button id="b" style="font-size:20px;padding:12px 20px">Descargar emo_hoja.png</button>
+<canvas id="c" width="2600" height="2600" style="width:520px;margin-top:16px;display:block"></canvas>
+<script>
+// mismo orden que corta.py
+const E=['🎥','💶','💰','📍','🤝','💬','📩','📱','🍕','💇','🏋️','🦷','☕','🚗','📈','🚀','⭐','⛰️','🌊','📣','🎬','👥','✅','🔥','💸'];
+const c=document.getElementById('c'),x=c.getContext('2d');
+x.font='440px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji"';x.textAlign='center';x.textBaseline='middle';
+E.forEach((e,i)=>x.fillText(e,(i%5)*520+260,Math.floor(i/5)*520+280));
+document.getElementById('b').onclick=()=>c.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='emo_hoja.png';a.click();},'image/png');
+</script></body></html>

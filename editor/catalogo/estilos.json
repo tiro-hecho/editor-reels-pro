@@ -541,5 +541,15 @@
    "t": "cine",
    "bg": "noche"
   }
+ },
+ {
+  "n": "iconos-3d-ambar",
+  "g": "vender",
+  "est": "aprobado",
+  "para": "Hablado a cámara con mucha dopamina: iconos 3D que giran, tarjetas en cascada, palabras gigantes ámbar (algunas detrás de la cabeza), transición distinta en cada corte y un efecto agudo en cada aparición",
+  "pub": [
+   "marca",
+   "negocios"
+  ]
  }
 ]

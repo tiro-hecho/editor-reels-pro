@@ -1,6 +1,6 @@
 # Catálogo de estilos
 
-42 estilos con un solo número: pide «hazlo con el estilo 13». **Catálogo visual:** abre `editor/catalogo/catalogo.html` (tarjetas animadas, filtros y visor de subtítulos).
+43 estilos con un solo número: pide «hazlo con el estilo 13». **Catálogo visual:** abre `editor/catalogo/catalogo.html` (tarjetas animadas, filtros y visor de subtítulos).
 Elige por lo que vas a contar en `INDICE-POR-GUION.md`. Las recetas siguen `PLANTILLA-FICHA.md`.
 
 Estado: **Aprobado** (salió en vídeos reales y gustó) · **En pruebas** · **Referencia** (receta sacada de otro creador; Claude la programa y conviene probar 10-15 s antes).
@@ -49,6 +49,7 @@ Estado: **Aprobado** (salió en vídeos reales y gustó) · **En pruebas** · **
 | **40** | `visita-rotulos-suelo` | Recorrido por un local o un piso con rótulos 3D en el suelo | Locales, inmuebles y avisos | negocios | Aprobado | muestra animada | receta |
 | **41** | `marcador-funciona` | Mitos «funciona / no funciona»: marcador arriba que se llena con fotos | Mal / bien y mitos | entrenadores | Aprobado | muestra animada | sí |
 | **42** | `cine-tipografico` | Reels «épicos»: localizaciones cada 2-4 s y frases alrededor de la cara | Contar una historia | marca, entrenadores | Referencia | muestra animada | receta |
+| **43** | `iconos-3d-ambar` | Hablado a cámara con mucha dopamina: iconos 3D que giran, tarjetas en cascada, palabras gigantes ámbar (algunas detrás de la cabeza), transición distinta en cada corte y un efecto agudo en cada aparición | Vender un servicio o producto | marca, negocios | Aprobado | `capturas/iconos-3d-ambar.jpg` | sí |
 
 ## Subtítulos
 
